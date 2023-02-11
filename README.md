@@ -6,10 +6,10 @@ In monolithic app, all the services will bundle in together which one service is
 
 The microservice architecture is collabrating with each other to serve the functions of the huge monolithic applications.In microservice architecture, container will be widely used in order to increase the performance and manage its own services among the container.
 
-## The benfits od Microservice architecture
+## The benfits of Microservice architecture
 
 There are many benefits of having microservice architecture than monolithic architecture. Under the developer scope having microservice architecture the development teams can create independently the services. Since they communicate via messaging if at all, they are not dependent on the same coding language. Developers can use the programming language that they comfortable with it, in order to develop microservice application. This helps them manage the services with their own, with lower costs and less bugs.
 
 Since the developer teams are working on smaller applications and more focused problem domains, the projects tend to be more agile. They can iterate faster, address new features on a shorter schedule, and fixes the bug almost immediately. Microservice improve the scalability of the architecture.
 
-Nowdays more enterprise are going forward to cloud, so microservice is a good solution. Moreover, most of the cloud providers currently providing services for application that want to support microservice architecture. The services they provide like containerization such as able to scale up the performance.
+Nowdays more enterprise are going forward to cloud, so microservice is a good solution. Moreover, most of the cloud providers currently providing services for application that want to support microservice architecture. The services cloud service providers provide such as containerization where it able to scale up the performance of the applications and able to deploy separately without having any dependent one and each other.
