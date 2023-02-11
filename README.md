@@ -1,7 +1,15 @@
 # Microservice-Architecture
 
-Microservice architecture it refers as micro architural style for developing the application. Microservice allow huge organization application to be separated into smaller independent services with each parts having its own realm of responsibilty and works together with other services to serve with better performance.
+Microservice architecture it refers as micro architural style for developing the application. Microservice allow huge organization application to be separated into smaller independent services with each parts having its own realm of responsibilty and works together with other services via RESTful API to serve purposes.
 
-In monolithic app, all the services will bundle in together which one service is down, the other services will crashed. The structure of monolithic architecure will be huge and complicated where all the services will be dependent with each other. The microservice architecture is collabrating with each order to serve the functions of the huge monolithic applications.
+In monolithic app, all the services will bundle in together which one service is down, the other services will crashed. The structure of monolithic architecure will be huge and complicated where all the services have been compiled it together.
 
-In microservice architecture, container will be widely used in order to increase the performance and manage its own services among the container.
+The microservice architecture is collabrating with each other to serve the functions of the huge monolithic applications.In microservice architecture, container will be widely used in order to increase the performance and manage its own services among the container.
+
+## The benfits od Microservice architecture
+
+There are many benefits of having microservice architecture than monolithic architecture. Under the developer scope having microservice architecture the development teams can create independently the services. Since they communicate via messaging if at all, they are not dependent on the same coding language. Developers can use the programming language that they comfortable with it, in order to develop microservice application. This helps them manage the services with their own, with lower costs and less bugs.
+
+Since the developer teams are working on smaller applications and more focused problem domains, the projects tend to be more agile. They can iterate faster, address new features on a shorter schedule, and fixes the bug almost immediately. Microservice improve the scalability of the architecture.
+
+Nowdays more enterprise are going forward to cloud, so microservice is a good solution. Moreover, most of the cloud providers currently providing services for application that want to support microservice architecture. The services they provide like containerization such as able to scale up the performance.
