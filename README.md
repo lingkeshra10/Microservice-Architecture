@@ -13,3 +13,6 @@ There are many benefits of having microservice architecture than monolithic arch
 Since the developer teams are working on smaller applications and more focused problem domains, the projects tend to be more agile. They can iterate faster, address new features on a shorter schedule, and fixes the bug almost immediately. Microservice improve the scalability of the architecture.
 
 Nowdays more enterprise are going forward to cloud, so microservice is a good solution. Moreover, most of the cloud providers currently providing services for application that want to support microservice architecture. The services cloud service providers provide such as containerization where it able to scale up the performance of the applications and able to deploy separately without having any dependent one and each other.
+
+
+![This is an image](https://github.com/lingkeshra10/Microservice-Architecture/blob/main/Microservice%20Architecture.png)
