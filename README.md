@@ -35,5 +35,6 @@ There will be few technology that Im going to use in order to develop these micr
 - MongoDB
 - PostgreSQL
 - Redis
+- OpenFeign
 - Kafka
 - RabbitMQ
