@@ -14,5 +14,26 @@ Since the developer teams are working on smaller applications and more focused p
 
 Nowdays more enterprise are going forward to cloud, so microservice is a good solution. Moreover, most of the cloud providers currently providing services for application that want to support microservice architecture. The services cloud service providers provide such as containerization where it able to scale up the performance of the applications and able to deploy separately without having any dependent one and each other.
 
+Several Java-based frameworks exist that are great for building Java microservices. Some examples include:
+
+- **Spring Boot.** This is a popular framework for building Java applications, especially microservices, because it simplifies much of the setup and configuration process for getting your applications running.
+- **Jersey.** This is a Java framework for simplifying the development of REST web services. This can help with the communications layer between microservices.
+- **Swagger.** This is a Java framework for building APIs. This also can help with the communications layer between microservices.
+
+Below is the sample architecture of Microservice that Im going to build it and run it:
+
 
 ![This is an image](https://github.com/lingkeshra10/Microservice-Architecture/blob/main/Microservice%20Architecture.png)
+
+
+There will be few technology that Im going to use in order to develop these microservice applications.
+
+- Spring Cloud API Gateway
+- Docker
+- Kubernetes
+- MariaDB
+- MongoDB
+- PostgreSQL
+- Redis
+- Kafka
+- RabbitMQ
