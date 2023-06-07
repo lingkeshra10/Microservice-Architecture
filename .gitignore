@@ -4,6 +4,9 @@
 # intelij ide XML files
 .idea/
 
+# intelij ide target files
+target/
+
 # remove created proto class files
 */src/main/java/com/microservice/proto/*
 
