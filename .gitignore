@@ -31,3 +31,4 @@ src/main/java/com/microservice/proto/
 
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
+PasswordService/src/main/java/com/microservice/proto/APIResponseOrBuilder.java
