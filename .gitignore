@@ -5,7 +5,7 @@
 .idea/
 
 # remove create protofiles XML files
-src/main/java/com/microservice/proto
+src/main/java/com/microservice/proto/
 
 # LST files
 *.lst
