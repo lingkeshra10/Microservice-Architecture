@@ -4,7 +4,7 @@
 # intelij ide XML files
 .idea/
 
-# remove create protofiles XML files
+# remove created proto class files
 */src/main/java/com/microservice/proto/*
 
 # LST files
