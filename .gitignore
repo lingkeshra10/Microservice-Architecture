@@ -2,7 +2,7 @@
 *.class
 
 # XML files
-.idea/*
+.idea/
 
 # LST files
 *.lst
