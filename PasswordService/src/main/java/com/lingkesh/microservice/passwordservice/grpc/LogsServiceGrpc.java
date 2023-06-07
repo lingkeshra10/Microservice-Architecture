@@ -5,11 +5,17 @@ import com.microservice.proto.LogsGrpc;
 import com.microservice.proto.loginRequest;
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Configuration;
 
 public class LogsServiceGrpc {
 
-    public void addLog(String userId, int responseCode, String remark){
-        ManagedChannel channel = ManagedChannelBuilder.forAddress("localhost", 8310).usePlaintext().build();
+
+    public void addLog(String userId, int responseCode, String remark, String grpcServerHostname, int grpcServerPort){
+        System.out.println("The hostname: " + grpcServerHostname);
+        System.out.println("The port: " + grpcServerPort);
+
+        ManagedChannel channel = ManagedChannelBuilder.forAddress(grpcServerHostname, grpcServerPort).usePlaintext().build();
 
         LogsGrpc.LogsBlockingStub stub = LogsGrpc.newBlockingStub(channel);
 
