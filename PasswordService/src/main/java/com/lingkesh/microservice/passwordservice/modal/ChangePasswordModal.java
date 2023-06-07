@@ -2,9 +2,27 @@ package com.lingkesh.microservice.passwordservice.modal;
 
 public class ChangePasswordModal {
 
+    private String userId;
+    private String username;
     private String userPasswordId;
     private String oldPassword;
     private String newPassword;
+
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
 
     public String getUserPasswordId() {
         return userPasswordId;
