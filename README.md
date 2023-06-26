@@ -56,19 +56,19 @@ There are different types of databases, but two widely used categories are:
 
 Databases offer several key features and concepts:
 
-**Data Schema:** A database schema defines the structure and organization of the data. In a relational database, the schema defines tables, columns, and relationships. In a NoSQL database, the schema can be more flexible, allowing dynamic and evolving data structures.
+- **Data Schema:** A database schema defines the structure and organization of the data. In a relational database, the schema defines tables, columns, and relationships. In a NoSQL database, the schema can be more flexible, allowing dynamic and evolving data structures.
 
-**Data Manipulation:** Databases support operations for creating, reading, updating, and deleting data, commonly referred to as CRUD operations. These operations are performed using specific query languages (e.g., SQL for relational databases) or APIs provided by the database system.
+- **Data Manipulation:** Databases support operations for creating, reading, updating, and deleting data, commonly referred to as CRUD operations. These operations are performed using specific query languages (e.g., SQL for relational databases) or APIs provided by the database system.
 
-**Indexing:** Indexing improves the performance of data retrieval operations by creating additional data structures (indexes) that allow faster searching and sorting of data based on specific columns or fields.
+- **Indexing:** Indexing improves the performance of data retrieval operations by creating additional data structures (indexes) that allow faster searching and sorting of data based on specific columns or fields.
 
-**Transactions:** Transactions ensure the atomicity, consistency, isolation, and durability (ACID) properties of data operations. ACID compliance ensures that database operations are executed reliably and maintain data integrity.
+- **Transactions:** Transactions ensure the atomicity, consistency, isolation, and durability (ACID) properties of data operations. ACID compliance ensures that database operations are executed reliably and maintain data integrity.
 
-**Concurrency Control:** Databases employ concurrency control mechanisms to manage simultaneous access to data by multiple users or processes. These mechanisms prevent data inconsistencies and ensure that concurrent operations are properly coordinated.
+- **Concurrency Control:** Databases employ concurrency control mechanisms to manage simultaneous access to data by multiple users or processes. These mechanisms prevent data inconsistencies and ensure that concurrent operations are properly coordinated.
 
-**Data Security:** Databases provide security mechanisms to protect data from unauthorized access and ensure data privacy. This includes user authentication, authorization, and encryption of sensitive data.
+- **Data Security:** Databases provide security mechanisms to protect data from unauthorized access and ensure data privacy. This includes user authentication, authorization, and encryption of sensitive data.
 
-**Data Replication and Sharding:** For scalability and fault tolerance, databases often support data replication, which involves maintaining multiple copies of data across different servers. Sharding is another technique that partitions data across multiple servers to distribute the workload and enable horizontal scalability.
+- **Data Replication and Sharding:** For scalability and fault tolerance, databases often support data replication, which involves maintaining multiple copies of data across different servers. Sharding is another technique that partitions data across multiple servers to distribute the workload and enable horizontal scalability.
 
 **PostgreSQL** and **MySQL** are both popular relational database management systems (RDBMS) that belong to the category of relational databases. While they share some similarities, they also have distinct features and characteristics.
 
