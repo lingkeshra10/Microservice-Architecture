@@ -72,7 +72,7 @@ Databases offer several key features and concepts:
 
 **PostgreSQL** and **MySQL** are both popular relational database management systems (RDBMS) that belong to the category of relational databases. While they share some similarities, they also have distinct features and characteristics.
 
-**PostgreSQL:** PostgreSQL is an open-source RDBMS known for its robustness, scalability, and extensive feature set. It provides a wide range of advanced features and capabilities, making it suitable for complex and demanding applications. Some key features of PostgreSQL include:
+**a. PostgreSQL:** PostgreSQL is an open-source RDBMS known for its robustness, scalability, and extensive feature set. It provides a wide range of advanced features and capabilities, making it suitable for complex and demanding applications. Some key features of PostgreSQL include:
 
 **Data Types:** PostgreSQL offers a rich set of built-in data types, including support for arrays, JSON, XML, and geometric data types.
 
@@ -84,7 +84,7 @@ Databases offer several key features and concepts:
 
 **Replication and High Availability:** PostgreSQL supports various replication methods for data redundancy and high availability, including streaming replication and logical replication.
 
-**MySQL:** MySQL is another popular open-source RDBMS widely used for web applications and other lightweight to moderately complex systems. It is known for its ease of use, speed, and simplicity. Key features of MySQL include:
+**b. MySQL:** MySQL is another popular open-source RDBMS widely used for web applications and other lightweight to moderately complex systems. It is known for its ease of use, speed, and simplicity. Key features of MySQL include:
 
 **Performance:** MySQL is optimized for speed and can handle high-traffic websites efficiently.
 Scalability: It offers scalability through features like replication, clustering, and sharding.
