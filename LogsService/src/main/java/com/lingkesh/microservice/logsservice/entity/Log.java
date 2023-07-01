@@ -9,11 +9,11 @@ public class Log {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String log_user_id;
-    private String event_id;
+    private int event_id;
     @Column(nullable = false)
     private String remark;
     @Column(nullable = false)
-    private Long created_date;
+    private long created_date;
 
     public Long getId() {
         return id;
@@ -31,11 +31,11 @@ public class Log {
         this.log_user_id = log_user_id;
     }
 
-    public String getEvent_id() {
+    public int getEvent_id() {
         return event_id;
     }
 
-    public void setEvent_id(String event_id) {
+    public void setEvent_id(int event_id) {
         this.event_id = event_id;
     }
 
@@ -47,11 +47,11 @@ public class Log {
         this.remark = remark;
     }
 
-    public Long getCreated_date() {
+    public long getCreated_date(long currentTime) {
         return created_date;
     }
 
-    public void setCreated_date(Long created_date) {
+    public void setCreated_date(long created_date) {
         this.created_date = created_date;
     }
 }
