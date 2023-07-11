@@ -10,9 +10,8 @@ service Logs {
 
 message addLogs {
   string userId = 1;
-  string username = 2;
-  int64 responseCode = 3;
-  string remark = 4;
+  int64 responseCode = 2;
+  string remark = 3;
 }
 
 message APIResponse {

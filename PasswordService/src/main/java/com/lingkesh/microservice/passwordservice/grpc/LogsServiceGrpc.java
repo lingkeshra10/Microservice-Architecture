@@ -2,29 +2,25 @@ package com.lingkesh.microservice.passwordservice.grpc;
 
 import com.microservice.proto.APIResponse;
 import com.microservice.proto.LogsGrpc;
-import com.microservice.proto.loginRequest;
+import com.microservice.proto.addLogs;
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.Configuration;
 
 public class LogsServiceGrpc {
 
-
-    public void addLog(String userId, int responseCode, String remark, String grpcServerHostname, int grpcServerPort){
-        System.out.println("The hostname: " + grpcServerHostname);
-        System.out.println("The port: " + grpcServerPort);
+    public void addServiceLogs(String userId, int responseCode, String remark, String grpcServerHostname, int grpcServerPort){
 
         ManagedChannel channel = ManagedChannelBuilder.forAddress(grpcServerHostname, grpcServerPort).usePlaintext().build();
 
         LogsGrpc.LogsBlockingStub stub = LogsGrpc.newBlockingStub(channel);
 
-        loginRequest request = loginRequest.newBuilder()
-                .setUsername("user123")
-                .setPassword("password123")
+        addLogs request = addLogs.newBuilder()
+                .setUserId(userId)
+                .setResponseCode(responseCode)
+                .setRemark(remark)
                 .build();
 
-        APIResponse response = stub.login(request);
+        APIResponse response = stub.logs(request);
 
         int code = response.getCode();
         String message = response.getMessage();
