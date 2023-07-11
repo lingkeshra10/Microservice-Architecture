@@ -34,7 +34,8 @@ public class PasswordController {
         String remark;
         ResponseModal responseModal = new ResponseModal();
         LogsServiceGrpc logsServiceGrpc = new LogsServiceGrpc();
-        logsServiceGrpc.addServiceLogs("", ResponseModal.SUCCESS, "", grpcServerHostname, grpcServerPort);
+        long userId = 123123;
+        logsServiceGrpc.addServiceLogs(userId, ResponseModal.SUCCESS, "", grpcServerHostname, grpcServerPort);
 
         responseModal.setCode(ResponseModal.SUCCESS);
         responseModal.setMessage(ResponseModal.getResponseMsg(ResponseModal.SUCCESS));

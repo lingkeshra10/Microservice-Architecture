@@ -1,11 +1,10 @@
-package com.lingkesh.microservice.passwordservice.modal;
+package com.lingkesh.microservice.userservice.modal;
 
-public class ChangePasswordModal {
+public class RegisterPasswordModal {
 
     private long userId;
     private String username;
-    private int oldPassword;
-    private String newPassword;
+    private int newPassword;
 
     public long getUserId() {
         return userId;
@@ -23,19 +22,11 @@ public class ChangePasswordModal {
         this.username = username;
     }
 
-    public int getOldPassword() {
-        return oldPassword;
-    }
-
-    public void setOldPassword(int oldPassword) {
-        this.oldPassword = oldPassword;
-    }
-
-    public String getNewPassword() {
+    public int getNewPassword() {
         return newPassword;
     }
 
-    public void setNewPassword(String newPassword) {
+    public void setNewPassword(int newPassword) {
         this.newPassword = newPassword;
     }
 }

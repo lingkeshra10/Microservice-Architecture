@@ -1,4 +1,4 @@
-package com.lingkesh.microservice.passwordservice.grpc;
+package com.lingkesh.microservice.userservice.grpc;
 
 import com.microservice.proto.APIResponse;
 import com.microservice.proto.LogsGrpc;
@@ -8,14 +8,14 @@ import io.grpc.ManagedChannelBuilder;
 
 public class LogsServiceGrpc {
 
-    public void addServiceLogs(long userId, int responseCode, String remark, String grpcServerHostname, int grpcServerPort){
+    public void addServiceLogs(String userId, int responseCode, String remark, String grpcServerHostname, int grpcServerPort){
 
         ManagedChannel channel = ManagedChannelBuilder.forAddress(grpcServerHostname, grpcServerPort).usePlaintext().build();
 
         LogsGrpc.LogsBlockingStub stub = LogsGrpc.newBlockingStub(channel);
 
         addLogs request = addLogs.newBuilder()
-                .setUserId(String.valueOf(userId))
+                .setUserId(userId)
                 .setResponseCode(responseCode)
                 .setRemark(remark)
                 .build();

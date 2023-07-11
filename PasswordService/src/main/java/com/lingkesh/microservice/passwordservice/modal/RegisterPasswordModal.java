@@ -2,16 +2,15 @@ package com.lingkesh.microservice.passwordservice.modal;
 
 public class RegisterPasswordModal {
 
-    private String userId;
+    private Long userId;
     private String username;
-    private String userPasswordId;
-    private String newPassword;
+    private int newPassword;
 
-    public String getUserId() {
+    public Long getUserId() {
         return userId;
     }
 
-    public void setUserId(String userId) {
+    public void setUserId(Long userId) {
         this.userId = userId;
     }
 
@@ -23,19 +22,11 @@ public class RegisterPasswordModal {
         this.username = username;
     }
 
-    public String getUserPasswordId() {
-        return userPasswordId;
-    }
-
-    public void setUserPasswordId(String userPasswordId) {
-        this.userPasswordId = userPasswordId;
-    }
-
-    public String getNewPassword() {
+    public int getNewPassword() {
         return newPassword;
     }
 
-    public void setNewPassword(String newPassword) {
+    public void setNewPassword(int newPassword) {
         this.newPassword = newPassword;
     }
 }

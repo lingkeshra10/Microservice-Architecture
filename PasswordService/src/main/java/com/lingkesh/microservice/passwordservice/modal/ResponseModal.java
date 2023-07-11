@@ -14,21 +14,14 @@ public class ResponseModal {
     public static int EXCEPTION_ERROR = 500;
 
     public static String getResponseMsg(int code){
-        switch (code) {
-            case SUCCESS:
-                return "Success";
-            case CHANGE_PASSWORD_FAIL:
-                return "User change password failed";
-            case USER_NEW_PASSWORD_RECORD:
-                return "User new password is under the password history record";
-            case USER_NEW_PASSWORD_CONDITIONS_NOT_MATCH:
-                return "User new password doesn't match the password conditions";
-
-            case 500:
-                return "Exception Error";
-            default:
-                return "";
-        }
+        return switch (code) {
+            case SUCCESS -> "Success";
+            case CHANGE_PASSWORD_FAIL -> "User change password failed";
+            case USER_NEW_PASSWORD_RECORD -> "User new password is under the password history record";
+            case USER_NEW_PASSWORD_CONDITIONS_NOT_MATCH -> "User new password doesn't match the password conditions";
+            case 500 -> "Exception Error";
+            default -> "";
+        };
     }
 
     public int getCode() {

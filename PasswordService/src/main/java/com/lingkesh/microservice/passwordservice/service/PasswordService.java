@@ -4,8 +4,8 @@ import com.lingkesh.microservice.passwordservice.entity.Password;
 
 public interface PasswordService {
 
-    boolean checkUserPassword(String userId, String userPassword);
+    boolean checkUserPassword(long userId, int userPassword);
 
-    Password changePassword(String userId, String newPasswd, boolean flagToEncrypt);
+    Password changePassword(long userId, int newPasswd);
 
 }

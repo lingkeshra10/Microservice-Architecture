@@ -12,6 +12,6 @@ import java.util.List;
 public interface PasswordRepo extends JpaRepository<Password, Long> {
 
     @Query("from Password p where p.password_user_id = :userId")
-    List<Password> retrieveUserPassword(@Param("userId") String userId);
+    List<Password> retrieveUserPassword(@Param("userId") Long userId);
 
 }

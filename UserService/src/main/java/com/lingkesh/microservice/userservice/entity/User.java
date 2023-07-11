@@ -3,7 +3,7 @@ package com.lingkesh.microservice.userservice.entity;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name="users")
+@Table(name="br_user")
 public class User {
 
     @Id
@@ -14,7 +14,7 @@ public class User {
     @Column(nullable = false)
     private String username;
     @Column(nullable = false)
-    private String encryptPassword;
+    private int encryptPassword;
 
     public Long getId() {
         return id;
@@ -48,11 +48,11 @@ public class User {
         this.username = username;
     }
 
-    public String getEncryptPassword() {
+    public int getEncryptPassword() {
         return encryptPassword;
     }
 
-    public void setEncryptPassword(String encryptPassword) {
+    public void setEncryptPassword(int encryptPassword) {
         this.encryptPassword = encryptPassword;
     }
 

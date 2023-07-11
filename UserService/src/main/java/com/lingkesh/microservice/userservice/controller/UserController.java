@@ -1,6 +1,8 @@
 package com.lingkesh.microservice.userservice.controller;
 
 import com.lingkesh.microservice.userservice.entity.User;
+import com.lingkesh.microservice.userservice.feign.PasswordServiceFeign;
+import com.lingkesh.microservice.userservice.modal.RegisterPasswordModal;
 import com.lingkesh.microservice.userservice.modal.ResponseModal;
 import com.lingkesh.microservice.userservice.modal.AddUserModal;
 import com.lingkesh.microservice.userservice.modal.UpdateUserModal;
@@ -15,6 +17,9 @@ import java.util.List;
 @RestController
 @RequestMapping("/user")
 public class UserController {
+
+    @Autowired
+    private PasswordServiceFeign passwdFeignService;
 
     @Autowired
     UserService userService;
@@ -47,9 +52,23 @@ public class UserController {
 
         User user = userService.saveUser(addUserModal);
 
-        responseModal.setCode(ResponseModal.SUCCESS);
-        responseModal.setMessage(ResponseModal.getResponseMsg(ResponseModal.SUCCESS));
-        responseModal.setObject(user.toString());
+        //This place that need to send user password details to password table to make sure password records
+        RegisterPasswordModal registerPasswordModal = new RegisterPasswordModal();
+        registerPasswordModal.setUserId(user.getId());
+        registerPasswordModal.setUsername(user.getUsername());
+        registerPasswordModal.setNewPassword(user.getEncryptPassword());
+
+        responseModal = passwdFeignService.registerUserPassword(registerPasswordModal).getBody();
+
+        if(responseModal.getCode() == ResponseModal.SUCCESS) {
+            responseModal.setCode(ResponseModal.SUCCESS);
+            responseModal.setMessage(ResponseModal.getResponseMsg(ResponseModal.SUCCESS));
+            responseModal.setObject(user.toString());
+        }else{
+            responseModal.setCode(responseModal.getCode());
+            responseModal.setMessage(responseModal.getMessage());
+            responseModal.setObject(user.toString());
+        }
 
         return ResponseEntity.status(HttpStatus.CREATED).body(responseModal);
     }
@@ -102,7 +121,7 @@ public class UserController {
     }
 
     @RequestMapping(value = "/isUserExist/{username}", produces = "application/json", method = RequestMethod.GET)
-    public ResponseEntity<ResponseModal> isUserExist(@PathVariable("username") String username){
+    public ResponseEntity<ResponseModal> isUserExistByUsername(@PathVariable("username") String username){
 
         ResponseModal responseModal = new ResponseModal();
 
