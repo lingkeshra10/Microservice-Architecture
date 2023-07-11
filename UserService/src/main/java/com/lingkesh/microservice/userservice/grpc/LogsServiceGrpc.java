@@ -8,14 +8,14 @@ import io.grpc.ManagedChannelBuilder;
 
 public class LogsServiceGrpc {
 
-    public void addServiceLogs(String userId, int responseCode, String remark, String grpcServerHostname, int grpcServerPort){
+    public void addServiceLogs(long userId, int responseCode, String remark, String grpcServerHostname, int grpcServerPort){
 
         ManagedChannel channel = ManagedChannelBuilder.forAddress(grpcServerHostname, grpcServerPort).usePlaintext().build();
 
         LogsGrpc.LogsBlockingStub stub = LogsGrpc.newBlockingStub(channel);
 
         addLogs request = addLogs.newBuilder()
-                .setUserId(userId)
+                .setUserId(String.valueOf(userId))
                 .setResponseCode(responseCode)
                 .setRemark(remark)
                 .build();

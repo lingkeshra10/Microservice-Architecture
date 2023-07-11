@@ -2,12 +2,14 @@ package com.lingkesh.microservice.userservice.controller;
 
 import com.lingkesh.microservice.userservice.entity.User;
 import com.lingkesh.microservice.userservice.feign.PasswordServiceFeign;
+import com.lingkesh.microservice.userservice.grpc.LogsServiceGrpc;
 import com.lingkesh.microservice.userservice.modal.RegisterPasswordModal;
 import com.lingkesh.microservice.userservice.modal.ResponseModal;
 import com.lingkesh.microservice.userservice.modal.AddUserModal;
 import com.lingkesh.microservice.userservice.modal.UpdateUserModal;
 import com.lingkesh.microservice.userservice.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -18,8 +20,17 @@ import java.util.List;
 @RequestMapping("/user")
 public class UserController {
 
+    @Value("${grpc.server.hostname}")
+    private String grpcServerHostname;
+
+    @Value("${grpc.server.port}")
+    private int grpcServerPort;
+
     @Autowired
     private PasswordServiceFeign passwdFeignService;
+
+    @Autowired
+    private LogsServiceGrpc logsServiceGrpc;
 
     @Autowired
     UserService userService;
@@ -37,6 +48,9 @@ public class UserController {
         //find the username exist or not
         boolean usernameResult = userService.findExistByUsername(addUserModal.getUsername());
         if(usernameResult){
+            String remark = "Add User Failed. This username already exist: " + addUserModal.getUsername();
+            logsServiceGrpc.addServiceLogs(1, ResponseModal.USERNAME_ALREADY_EXIST, remark, grpcServerHostname, grpcServerPort);
+
             responseModal.setCode(ResponseModal.USERNAME_ALREADY_EXIST);
             responseModal.setMessage(ResponseModal.getResponseMsg(ResponseModal.USERNAME_ALREADY_EXIST));
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(responseModal);
@@ -45,6 +59,9 @@ public class UserController {
         //find the email exist or not
         boolean emailResult = userService.findExistByEmail(addUserModal.getEmail());
         if(emailResult){
+            String remark = "Add User Failed. This email already exist: " + addUserModal.getEmail();
+            logsServiceGrpc.addServiceLogs(1, ResponseModal.USERNAME_ALREADY_EXIST, remark, grpcServerHostname, grpcServerPort);
+
             responseModal.setCode(ResponseModal.EMAIL_ALREADY_EXIST);
             responseModal.setMessage(ResponseModal.getResponseMsg(ResponseModal.EMAIL_ALREADY_EXIST));
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(responseModal);
@@ -52,25 +69,28 @@ public class UserController {
 
         User user = userService.saveUser(addUserModal);
 
-        //This place that need to send user password details to password table to make sure password records
-        RegisterPasswordModal registerPasswordModal = new RegisterPasswordModal();
-        registerPasswordModal.setUserId(user.getId());
-        registerPasswordModal.setUsername(user.getUsername());
-        registerPasswordModal.setNewPassword(user.getEncryptPassword());
+        if(user != null){
+            String remark = "Add User Successful. The user's username " + addUserModal.getUsername();
+            logsServiceGrpc.addServiceLogs(1, ResponseModal.SUCCESS, remark, grpcServerHostname, grpcServerPort);
 
-        responseModal = passwdFeignService.registerUserPassword(registerPasswordModal).getBody();
+            //This place that need to send user password details to password table to make sure password records
+            RegisterPasswordModal registerPasswordModal = new RegisterPasswordModal();
+            registerPasswordModal.setUserId(user.getId());
+            registerPasswordModal.setUsername(user.getUsername());
+            registerPasswordModal.setNewPassword(user.getEncryptPassword());
 
-        if(responseModal.getCode() == ResponseModal.SUCCESS) {
-            responseModal.setCode(ResponseModal.SUCCESS);
-            responseModal.setMessage(ResponseModal.getResponseMsg(ResponseModal.SUCCESS));
+            responseModal = passwdFeignService.registerUserPassword(registerPasswordModal).getBody();
+
             responseModal.setObject(user.toString());
+            return ResponseEntity.status(HttpStatus.CREATED).body(responseModal);
         }else{
-            responseModal.setCode(responseModal.getCode());
-            responseModal.setMessage(responseModal.getMessage());
-            responseModal.setObject(user.toString());
-        }
+            String remark = "Add User Failed. The user's username " + addUserModal.getUsername();
+            logsServiceGrpc.addServiceLogs(1, ResponseModal.ADD_USER_FAIL, remark, grpcServerHostname, grpcServerPort);
 
-        return ResponseEntity.status(HttpStatus.CREATED).body(responseModal);
+            responseModal.setCode(ResponseModal.ADD_USER_FAIL);
+            responseModal.setMessage(ResponseModal.getResponseMsg(ResponseModal.ADD_USER_FAIL));
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(responseModal);
+        }
     }
 
     @RequestMapping(value = "/update", produces = "application/json", method = RequestMethod.PUT)
@@ -82,6 +102,7 @@ public class UserController {
 
         //find the username exist or not
         boolean usernameResult = userService.findExistByUsername(updateUserModal.getUsername());
+
         if(!usernameResult){
             responseModal.setCode(ResponseModal.USER_NOT_EXIST);
             responseModal.setMessage(ResponseModal.getResponseMsg(ResponseModal.USER_NOT_EXIST));
