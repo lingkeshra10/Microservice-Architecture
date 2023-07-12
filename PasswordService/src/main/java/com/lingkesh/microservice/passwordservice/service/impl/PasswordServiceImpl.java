@@ -4,7 +4,6 @@ import com.lingkesh.microservice.passwordservice.entity.Password;
 import com.lingkesh.microservice.passwordservice.repository.PasswordRepo;
 import com.lingkesh.microservice.passwordservice.service.PasswordService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -16,7 +15,7 @@ public class PasswordServiceImpl implements PasswordService {
     PasswordRepo passwordRepo;
 
     @Autowired
-    public PasswordServiceImpl(PasswordRepo passwordRepo, BCryptPasswordEncoder bCryptPasswordEncoder) {
+    public PasswordServiceImpl(PasswordRepo passwordRepo) {
         this.passwordRepo = passwordRepo;
     }
 

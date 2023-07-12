@@ -12,12 +12,12 @@ public class LogsService extends LogsGrpc.LogsImplBase {
     public void logs(addLogs request, StreamObserver<APIResponse> responseObserver) {
 
         String userId = request.getUserId();
-        String username = request.getUsername();
         int responseCode = request.getResponseCode();
         String remark = request.getRemark();
 
-        System.out.println("THE USERNAME IS SHOWING: " + username);
+        System.out.println("THE userId IS SHOWING: " + userId);
         System.out.println("THE responseCode IS SHOWING: " + responseCode);
+        System.out.println("THE remark IS SHOWING: " + remark);
 
         int code= 0;
         String message = "Success";

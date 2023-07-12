@@ -19,7 +19,7 @@ public class UserServiceImpl implements UserService {
     EmailServiceProducer producer;
 
     @Autowired
-    public UserServiceImpl(UserRepo userRepo, BCryptPasswordEncoder bCryptPasswordEncoder, EmailServiceProducer producer) {
+    public UserServiceImpl(UserRepo userRepo, EmailServiceProducer producer) {
         this.userRepo = userRepo;
         this.producer = producer;
     }

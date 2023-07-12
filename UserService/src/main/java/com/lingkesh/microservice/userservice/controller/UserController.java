@@ -30,9 +30,6 @@ public class UserController {
     private PasswordServiceFeign passwdFeignService;
 
     @Autowired
-    private LogsServiceGrpc logsServiceGrpc;
-
-    @Autowired
     UserService userService;
 
     @GetMapping("/status/check")
@@ -43,6 +40,7 @@ public class UserController {
     @RequestMapping(value = "/add", produces = "application/json", method = RequestMethod.PUT)
     public ResponseEntity<ResponseModal> addUser(@RequestBody AddUserModal addUserModal){
 
+        LogsServiceGrpc logsServiceGrpc = new LogsServiceGrpc();
         ResponseModal responseModal = new ResponseModal();
 
         //find the username exist or not

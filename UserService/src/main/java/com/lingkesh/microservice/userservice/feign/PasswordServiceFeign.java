@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @FeignClient(name ="password-service", url="localhost:8300")
 public interface PasswordServiceFeign {
 
-    @RequestMapping(value = "/registerUsrPwd", produces = "application/json", method = RequestMethod.PUT)
+    @RequestMapping(value = "/password/registerUsrPwd", produces = "application/json", method = RequestMethod.PUT)
     ResponseEntity<ResponseModal> registerUserPassword(@RequestBody RegisterPasswordModal registerPasswordModal);
 
 }
