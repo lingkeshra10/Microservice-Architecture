@@ -1,6 +1,6 @@
 package com.lingkesh.microservice.EmailService.modal;
 
-public class EmailModal {
+public class SimpleEmailModal {
 
     private String username;
     private String email;
