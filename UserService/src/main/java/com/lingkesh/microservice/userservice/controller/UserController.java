@@ -74,7 +74,7 @@ public class UserController {
 
         if(user != null){
             String remark = "Add User Successful. The user's username " + addUserModal.getUsername();
-            logsServiceGrpc.addServiceLogs(1, ResponseModal.SUCCESS, remark, grpcServerHostname, grpcServerPort);
+            logsServiceGrpc.addServiceLogs(1, ResponseModal.ADD_USER_SUCCESS, remark, grpcServerHostname, grpcServerPort);
 
             //This place that need to send user password details to password table to make sure password records
             RegisterPasswordModal registerPasswordModal = new RegisterPasswordModal();
@@ -141,8 +141,8 @@ public class UserController {
                 needToChangeName, needToChangeEmail);
 
         //Return success message
-        responseModal.setCode(ResponseModal.SUCCESS);
-        responseModal.setMessage(ResponseModal.getResponseMsg(ResponseModal.SUCCESS));
+        responseModal.setCode(ResponseModal.UPDATE_USER_SUCCESS);
+        responseModal.setMessage(ResponseModal.getResponseMsg(ResponseModal.UPDATE_USER_SUCCESS));
         responseModal.setObject(user.toString());
 
         return ResponseEntity.status(HttpStatus.ACCEPTED).body(responseModal);
@@ -165,8 +165,8 @@ public class UserController {
         //Extract the user details
         User user = userService.retrieveUserDetails(username);
 
-        responseModal.setCode(ResponseModal.SUCCESS);
-        responseModal.setMessage(ResponseModal.getResponseMsg(ResponseModal.SUCCESS));
+        responseModal.setCode(ResponseModal.USER_EXIST);
+        responseModal.setMessage(ResponseModal.getResponseMsg(ResponseModal.USER_EXIST));
         responseModal.setObject(user.toString());
 
         return ResponseEntity.status(HttpStatus.OK).body(responseModal);
@@ -179,8 +179,8 @@ public class UserController {
 
         List<User> userList = userService.retrieveUserList();
 
-        responseModal.setCode(ResponseModal.SUCCESS);
-        responseModal.setMessage(ResponseModal.getResponseMsg(ResponseModal.SUCCESS));
+        responseModal.setCode(ResponseModal.RETRIEVE_USER_LIST_SUCCESS);
+        responseModal.setMessage(ResponseModal.getResponseMsg(ResponseModal.RETRIEVE_USER_LIST_SUCCESS));
         responseModal.setObject(userList.toString());
 
         return ResponseEntity.status(HttpStatus.OK).body(responseModal);
@@ -204,8 +204,8 @@ public class UserController {
         userService.deleteUser(username);
 
         //Return the message
-        responseModal.setCode(ResponseModal.SUCCESS);
-        responseModal.setMessage(ResponseModal.getResponseMsg(ResponseModal.SUCCESS));
+        responseModal.setCode(ResponseModal.DELETE_USER_SUCCESS);
+        responseModal.setMessage(ResponseModal.getResponseMsg(ResponseModal.DELETE_USER_SUCCESS));
 
         return ResponseEntity.status(HttpStatus.OK).body(responseModal);
     }

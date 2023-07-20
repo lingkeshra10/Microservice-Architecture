@@ -35,10 +35,10 @@ public class PasswordController {
         ResponseModal responseModal = new ResponseModal();
         LogsServiceGrpc logsServiceGrpc = new LogsServiceGrpc();
         long userId = 123123;
-        logsServiceGrpc.addServiceLogs(userId, ResponseModal.SUCCESS, "", grpcServerHostname, grpcServerPort);
+        logsServiceGrpc.addServiceLogs(userId, ResponseModal.USER_REGISTER_PASSWORD_SUCCESS, "", grpcServerHostname, grpcServerPort);
 
-        responseModal.setCode(ResponseModal.SUCCESS);
-        responseModal.setMessage(ResponseModal.getResponseMsg(ResponseModal.SUCCESS));
+        responseModal.setCode(ResponseModal.USER_REGISTER_PASSWORD_SUCCESS);
+        responseModal.setMessage(ResponseModal.getResponseMsg(ResponseModal.USER_REGISTER_PASSWORD_SUCCESS));
         responseModal.setObject("Its working");
         return ResponseEntity.status(HttpStatus.OK).body(responseModal);
     }
@@ -55,18 +55,18 @@ public class PasswordController {
 
         if(password == null){
             remark = "User " + registerPasswordModal.getUsername() + " not able to register the password";
-            logsServiceGrpc.addServiceLogs(registerPasswordModal.getUserId(), ResponseModal.CHANGE_PASSWORD_FAIL, remark, grpcServerHostname, grpcServerPort);
+            logsServiceGrpc.addServiceLogs(registerPasswordModal.getUserId(), ResponseModal.USER_REGISTER_PASSWORD_FAILED, remark, grpcServerHostname, grpcServerPort);
 
-            responseModal.setCode(ResponseModal.CHANGE_PASSWORD_FAIL);
-            responseModal.setMessage(ResponseModal.getResponseMsg(ResponseModal.CHANGE_PASSWORD_FAIL));
+            responseModal.setCode(ResponseModal.USER_REGISTER_PASSWORD_FAILED);
+            responseModal.setMessage(ResponseModal.getResponseMsg(ResponseModal.USER_REGISTER_PASSWORD_FAILED));
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(responseModal);
         }
 
         remark = "User " + registerPasswordModal.getUsername() + " successfully register the password";
-        logsServiceGrpc.addServiceLogs(registerPasswordModal.getUserId(), ResponseModal.SUCCESS, remark, grpcServerHostname, grpcServerPort);
+        logsServiceGrpc.addServiceLogs(registerPasswordModal.getUserId(), ResponseModal.USER_REGISTER_PASSWORD_SUCCESS, remark, grpcServerHostname, grpcServerPort);
 
-        responseModal.setCode(ResponseModal.SUCCESS);
-        responseModal.setMessage(ResponseModal.getResponseMsg(ResponseModal.SUCCESS));
+        responseModal.setCode(ResponseModal.USER_REGISTER_PASSWORD_SUCCESS);
+        responseModal.setMessage(ResponseModal.getResponseMsg(ResponseModal.USER_REGISTER_PASSWORD_SUCCESS));
         responseModal.setObject(password.toString());
         return ResponseEntity.status(HttpStatus.OK).body(responseModal);
     }
@@ -98,19 +98,19 @@ public class PasswordController {
 
         if(password == null){
             remark = "User" + changePasswordModal.getUsername() + " not able to register the password";
-            logsServiceGrpc.addServiceLogs(changePasswordModal.getUserId(), ResponseModal.CHANGE_PASSWORD_FAIL, remark, grpcServerHostname, grpcServerPort);
+            logsServiceGrpc.addServiceLogs(changePasswordModal.getUserId(), ResponseModal.USER_CHANGE_PASSWORD_FAILED, remark, grpcServerHostname, grpcServerPort);
 
-            responseModal.setCode(ResponseModal.CHANGE_PASSWORD_FAIL);
-            responseModal.setMessage(ResponseModal.getResponseMsg(ResponseModal.CHANGE_PASSWORD_FAIL));
+            responseModal.setCode(ResponseModal.USER_CHANGE_PASSWORD_FAILED);
+            responseModal.setMessage(ResponseModal.getResponseMsg(ResponseModal.USER_CHANGE_PASSWORD_FAILED));
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(responseModal);
         }
 
         //Return the result
         remark = "User " + changePasswordModal.getUsername() + " successfully register the password";
-        logsServiceGrpc.addServiceLogs(changePasswordModal.getUserId(), ResponseModal.SUCCESS, remark, grpcServerHostname, grpcServerPort);
+        logsServiceGrpc.addServiceLogs(changePasswordModal.getUserId(), ResponseModal.USER_CHANGE_PASSWORD_SUCCESS, remark, grpcServerHostname, grpcServerPort);
 
-        responseModal.setCode(ResponseModal.SUCCESS);
-        responseModal.setMessage(ResponseModal.getResponseMsg(ResponseModal.SUCCESS));
+        responseModal.setCode(ResponseModal.USER_CHANGE_PASSWORD_SUCCESS);
+        responseModal.setMessage(ResponseModal.getResponseMsg(ResponseModal.USER_CHANGE_PASSWORD_SUCCESS));
         responseModal.setObject(password.toString());
         return ResponseEntity.status(HttpStatus.OK).body(responseModal);
     }

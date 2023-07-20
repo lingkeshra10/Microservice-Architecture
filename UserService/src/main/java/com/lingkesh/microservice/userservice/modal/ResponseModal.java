@@ -6,41 +6,43 @@ public class ResponseModal {
     String message;
     String object;
 
-    public static int SUCCESS = 0;
-    public static int ADD_USER_FAIL = 10001;
-    public static int UPDATE_USER_FAIL = 10002;
-    public static int RETRIEVE_USER_FAIL = 10003;
-    public static int RETRIEVE_USER_LIST_FAIL = 10004;
-    public static int USER_NOT_EXIST = 10005;
-    public static int USERNAME_ALREADY_EXIST = 10006;
-    public static  int EMAIL_ALREADY_EXIST = 10007;
+    public final static int ADD_USER_SUCCESS = 10001;
+    public final static int ADD_USER_FAIL = 10002;
+    public final static int UPDATE_USER_SUCCESS = 10003;
+    public final static int UPDATE_USER_FAIL = 10004;
+    public final static int DELETE_USER_SUCCESS = 10005;
+    public final static int DELETE_USER_FAILED = 10006;
+    public final static int RETRIEVE_USER_SUCCESS = 10007;
+    public final static int RETRIEVE_USER_FAIL = 10008;
+    public final static int RETRIEVE_USER_LIST_SUCCESS = 10009;
+    public final static int RETRIEVE_USER_LIST_FAIL = 10010;
+    public final static int USER_NOT_EXIST = 10011;
+    public final static int USER_EXIST = 10012;
+    public final static int USERNAME_ALREADY_EXIST = 10013;
+    public final static int EMAIL_ALREADY_EXIST = 10014;
 
     public static int EXCEPTION_ERROR = 500;
 
     public static String getResponseMsg(int code){
-        switch (code) {
-            case 0:
-                return "Success";
-            case 10001:
-                return "Add User Failed";
-            case 10002:
-                return "Update User Failed";
-            case 10003:
-                return "Retrieve User Details failed";
-            case 10004:
-                return "Retrieve list of user failed";
-            case 10005:
-                return "User is not exist";
-            case 10006:
-                return "Failed the username is already exist";
-            case 10007:
-                return "Failed the email is already exist";
+        return switch (code) {
+            case ADD_USER_SUCCESS -> "Add User Successfully";
+            case ADD_USER_FAIL -> "Add User Failed";
+            case UPDATE_USER_SUCCESS -> "Update User Successfully";
+            case UPDATE_USER_FAIL -> "Update User Failed";
+            case DELETE_USER_SUCCESS -> "Delete User Successfully";
+            case DELETE_USER_FAILED -> "Delete User Failed";
+            case RETRIEVE_USER_SUCCESS -> "Retrieve User Details Successfully";
+            case RETRIEVE_USER_FAIL -> "Retrieve User Details Failed";
+            case RETRIEVE_USER_LIST_SUCCESS -> "Retrieve User List Successfully";
+            case RETRIEVE_USER_LIST_FAIL -> "Retrieve User List Failed";
+            case USER_NOT_EXIST -> "User is not exist";
+            case USER_EXIST -> "User is exist";
+            case USERNAME_ALREADY_EXIST -> "Failed the username is already exist";
+            case EMAIL_ALREADY_EXIST -> "Failed the email is already exist";
 
-            case 500:
-                return "Exception Error";
-            default:
-                return "";
-        }
+            case 500 -> "Exception Error";
+            default -> "";
+        };
     }
 
     public int getCode() {

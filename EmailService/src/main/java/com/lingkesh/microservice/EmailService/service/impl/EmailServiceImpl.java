@@ -34,10 +34,10 @@ public class EmailServiceImpl implements EmailService {
             message.setText(details.getMsgBody());
 
             emailSender.send(message);
-            return ResponseModal.SUCCESS;
+            return ResponseModal.EMAIL_SEND_SUCCESS;
         } catch (MailException ex) {
             ex.printStackTrace();
-            return ResponseModal.EXCEPTION_ERROR;
+            return ResponseModal.EMAIL_SEND_FAIL;
         }
     }
 
@@ -62,12 +62,12 @@ public class EmailServiceImpl implements EmailService {
 
             // Sending the mail
             javaMailSender.send(mimeMessage);
-            return ResponseModal.SUCCESS;
+            return ResponseModal.EMAIL_SEND_SUCCESS;
         } catch (MessagingException ex) {
             // Catch block to handle MessagingException
             ex.printStackTrace();
             // Display message when exception occurred
-            return ResponseModal.EXCEPTION_ERROR;
+            return ResponseModal.EMAIL_SEND_FAIL;
         }
     }
 }
