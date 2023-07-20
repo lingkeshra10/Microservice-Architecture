@@ -73,7 +73,7 @@ public class PasswordController {
 
     //Need to revisit this API
     @RequestMapping(value = "/changeUsrPwd", produces = "application/json", method = RequestMethod.PUT)
-    public ResponseEntity<ResponseModal> addUser(@RequestBody ChangePasswordModal changePasswordModal){
+    public ResponseEntity<ResponseModal> changeUserPassword(@RequestBody ChangePasswordModal changePasswordModal){
 
         String remark;
         ResponseModal responseModal = new ResponseModal();
