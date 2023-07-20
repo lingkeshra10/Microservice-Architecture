@@ -2,9 +2,18 @@ package com.lingkesh.microservice.EmailService.modal;
 
 public class SimpleEmailModal {
 
+    String userId;
     private String username;
     private String email;
     private String emailNotificationType;
+
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
 
     public String getUsername() {
         return username;

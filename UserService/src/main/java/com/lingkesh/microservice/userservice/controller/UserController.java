@@ -3,6 +3,8 @@ package com.lingkesh.microservice.userservice.controller;
 import com.lingkesh.microservice.userservice.entity.User;
 import com.lingkesh.microservice.userservice.feign.PasswordServiceFeign;
 import com.lingkesh.microservice.userservice.grpc.LogsServiceGrpc;
+import com.lingkesh.microservice.userservice.kafka.modal.EmailModal;
+import com.lingkesh.microservice.userservice.kafka.producer.EmailServiceProducer;
 import com.lingkesh.microservice.userservice.modal.RegisterPasswordModal;
 import com.lingkesh.microservice.userservice.modal.ResponseModal;
 import com.lingkesh.microservice.userservice.modal.AddUserModal;
@@ -31,6 +33,9 @@ public class UserController {
 
     @Autowired
     UserService userService;
+
+    @Autowired
+    EmailServiceProducer producer;
 
     @GetMapping("/status/check")
     public String status() {
@@ -80,6 +85,10 @@ public class UserController {
             responseModal = passwdFeignService.registerUserPassword(registerPasswordModal).getBody();
 
             responseModal.setObject(user.toString());
+
+            //Send Welcome User Email
+            sendWelcomeUserEmail(user);
+
             return ResponseEntity.status(HttpStatus.CREATED).body(responseModal);
         }else{
             String remark = "Add User Failed. The user's username " + addUserModal.getUsername();
@@ -200,5 +209,21 @@ public class UserController {
 
         return ResponseEntity.status(HttpStatus.OK).body(responseModal);
     }
+
+    private void sendWelcomeUserEmail(User user){
+        try {
+            //Send Email to the User
+            EmailModal emailModal = new EmailModal();
+            emailModal.setUserId(String.valueOf(user.getId()));
+            emailModal.setEmail(user.getEmail());
+            emailModal.setUsername(user.getUsername());
+            emailModal.setEmailNotificationType("1");
+
+            producer.sendMessage(emailModal);
+        }catch (Exception ex){
+            ex.printStackTrace();
+        }
+    }
+
 
 }

@@ -2,10 +2,19 @@ package com.lingkesh.microservice.EmailService.modal;
 
 public class EmailAttachmentModal {
 
+    String userId;
     private String username;
     private String email;
     private String emailNotificationType;
     private String attachment;
+
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
 
     public String getUsername() {
         return username;

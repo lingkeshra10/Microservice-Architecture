@@ -1,13 +1,10 @@
 package com.lingkesh.microservice.userservice.service.impl;
 
 import com.lingkesh.microservice.userservice.entity.User;
-import com.lingkesh.microservice.userservice.kafka.modal.EmailModal;
-import com.lingkesh.microservice.userservice.kafka.producer.EmailServiceProducer;
 import com.lingkesh.microservice.userservice.modal.AddUserModal;
 import com.lingkesh.microservice.userservice.repository.UserRepo;
 import com.lingkesh.microservice.userservice.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -16,12 +13,10 @@ import java.util.List;
 public class UserServiceImpl implements UserService {
 
     UserRepo userRepo;
-    EmailServiceProducer producer;
 
     @Autowired
-    public UserServiceImpl(UserRepo userRepo, EmailServiceProducer producer) {
+    public UserServiceImpl(UserRepo userRepo) {
         this.userRepo = userRepo;
-        this.producer = producer;
     }
 
     @Override
@@ -34,15 +29,6 @@ public class UserServiceImpl implements UserService {
             user.setEncryptPassword(addUserModal.getPassword().hashCode());
 
             userRepo.save(user);
-
-            //Send Email to the User
-            EmailModal emailModal = new EmailModal();
-            emailModal.setEmail(addUserModal.getEmail());
-            emailModal.setUsername(addUserModal.getUsername());
-            emailModal.setEmailNotificationType("1");
-
-            producer.sendMessage(emailModal);
-
             return user;
         }catch (Exception ex){
             ex.printStackTrace();
@@ -63,7 +49,6 @@ public class UserServiceImpl implements UserService {
             }
             userRepo.save(user);
         }
-
         return user;
     }
 
@@ -89,9 +74,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void deleteUser(String username) {
-
         User user = userRepo.retrieveByUsername(username);
-
         userRepo.delete(user);
     }
 

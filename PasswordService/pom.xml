@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.lingkesh.microservice</groupId>
-	<artifactId>passwordservice</artifactId>
+	<artifactId>passwordService</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>passwordservice</name>
+	<name>passwordService</name>
 	<description>Password service that contains users password history and password conditions</description>
 	<properties>
 		<java.version>17</java.version>
