@@ -89,8 +89,8 @@ Scalability: It offers scalability through features like replication, clustering
 
 - **Community and Ecosystem:** MySQL has a large and active community, with a wide range of tools, libraries, and frameworks that integrate well with it.
 
+When choosing between PostgreSQL and MySQL, it's essential to consider factors such as the complexity of the application, the need for advanced features, scalability requirements, performance considerations, and the skills and preferences of the development team. Both databases are widely used and have extensive documentation and community support, which can be beneficial when seeking assistance or resources.
+
 Below is the sample architecture of Microservice that I'm going to build and run it:
 
 ![This is an image](https://github.com/lingkeshra10/Microservice-Architecture/blob/main/Microservice%20Architecture.png)
-
-When choosing between PostgreSQL and MySQL, it's essential to consider factors such as the complexity of the application, the need for advanced features, scalability requirements, performance considerations, and the skills and preferences of the development team. Both databases are widely used and have extensive documentation and community support, which can be beneficial when seeking assistance or resources.
