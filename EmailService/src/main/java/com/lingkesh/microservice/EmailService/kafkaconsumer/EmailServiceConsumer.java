@@ -53,7 +53,6 @@ public class EmailServiceConsumer {
         logsGrpc.addServiceLogs(Long.parseLong(userId), result, remark, grpcServerHostname, grpcServerPort);
 
         //Added to the Email Queue if its failed
-
     }
 
     @KafkaListener(topics = consumeEmailWithAttachment)

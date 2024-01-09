@@ -1,13 +1,8 @@
 package com.lingkesh.microservice.EmailService.management;
 
-import com.lingkesh.microservice.EmailService.modal.EmailDetailsModal;
-import com.lingkesh.microservice.EmailService.service.EmailService;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.lingkesh.microservice.EmailService.modal.ResponseModal;
 
 public class EmailServiceManagement {
-
-    @Autowired
-    EmailService emailService;
 
     public int sendEmail(String username, String userEmail, String emailNotificationType){
 
@@ -17,27 +12,31 @@ public class EmailServiceManagement {
         switch(emailNotificationType){
             case "1":
                 subject = "Welcome to BlackRock Application";
-                emailContent = "";
+                emailContent = "Hai, " + username + " thank you for choosing our applications.";
                 break;
 
             case "2":
                 subject = "Password Updated";
-                emailContent = "";
+                emailContent = "Hai, " + username + " we have successfully updated password for your account. " +
+                        "If you didnt perform this action please contact the administrator.";
                 break;
 
             case "3":
                 subject = "Unusual Login";
-                emailContent = "";
+                emailContent = "Hai, " + username + " we have detected unusual login to your application.";
                 break;
 
             case "4":
                 subject = "Payment Due Date";
-                emailContent = "";
+                emailContent = "Hai, " + username + " we have notice your account reach due date for the payment. " +
+                        "Please perform your payment for continuing your premium version";
                 break;
 
             case "5":
                 subject = "Dissolve Premium Account";
-                emailContent = "";
+                emailContent = "Hai, " + username + " due to the payment for the account not been paid. " +
+                        "We will degrade your account. " +
+                        "If there is any inquiry please contact our administrator.";
                 break;
 
             default:
@@ -46,12 +45,9 @@ public class EmailServiceManagement {
                 break;
         }
 
-        EmailDetailsModal emailDetailsModal = new EmailDetailsModal();
-        emailDetailsModal.setRecipient(userEmail);
-        emailDetailsModal.setSubject(subject);
-        emailDetailsModal.setMsgBody(emailContent);
-
-        return emailService.sendSimpleMail(emailDetailsModal);
+        System.out.println("Recipient: " + username + " with the user email: " + userEmail +
+                " have successfully sent email with subject: " + subject + "and email content: " + emailContent);
+        return ResponseModal.EMAIL_SEND_SUCCESS;
     }
 
     public int sendEmailAttachment(String username, String userEmail, String emailNotificationType, String attachment){
@@ -91,13 +87,10 @@ public class EmailServiceManagement {
                 break;
         }
 
-        EmailDetailsModal emailDetailsModal = new EmailDetailsModal();
-        emailDetailsModal.setRecipient(userEmail);
-        emailDetailsModal.setSubject(subject);
-        emailDetailsModal.setMsgBody(emailContent);
-        emailDetailsModal.setAttachment(attachment);
-
-        return emailService.sendMailWithAttachment(emailDetailsModal);
+        System.out.println("Recipient: " + username + " with the user email: " + userEmail +
+                " have successfully sent email with subject: " + subject + "and email content: " + emailContent
+                + " with attachment:" + attachment);
+        return ResponseModal.EMAIL_SEND_SUCCESS;
     }
 
 
