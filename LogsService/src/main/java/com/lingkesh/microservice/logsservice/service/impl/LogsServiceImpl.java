@@ -5,6 +5,8 @@ import com.lingkesh.microservice.logsservice.repository.LogRepo;
 import com.lingkesh.microservice.logsservice.service.LogService;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.util.List;
+
 public class LogsServiceImpl implements LogService {
 
     @Autowired
@@ -12,7 +14,6 @@ public class LogsServiceImpl implements LogService {
 
     @Override
     public void addLogs(String userId, String remark, int responseCode) {
-
         Log log = new Log();
         log.setLog_user_id(userId);
         log.setRemark(remark);
@@ -21,6 +22,20 @@ public class LogsServiceImpl implements LogService {
         log.getCreated_date(currentTime);
 
         logRepo.save(log);
+    }
 
+    @Override
+    public Log retrieveUserLog(String userId) {
+
+        List<Log> retrieveUserListLog = logRepo.retrieveUserLog(userId);
+
+        // Check if the list is not empty
+        if (!retrieveUserListLog.isEmpty()) {
+            // Get the LogDetails of the first Log in the list
+            return retrieveUserListLog.get(0);
+        } else {
+            // Handle the case when the list is empty (e.g., return null or throw an exception)
+            return null;
+        }
     }
 }

@@ -1,18 +1,16 @@
 package com.lingkesh.microservice.logsservice.entity;
 
-import jakarta.persistence.*;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
-@Entity
+@Document(collection = "br_logs")
 public class Log {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String log_user_id;
     private int event_id;
-    @Column(nullable = false)
     private String remark;
-    @Column(nullable = false)
     private long created_date;
 
     public Long getId() {
