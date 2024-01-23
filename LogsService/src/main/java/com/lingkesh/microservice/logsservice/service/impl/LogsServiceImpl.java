@@ -15,11 +15,11 @@ public class LogsServiceImpl implements LogService {
     @Override
     public void addLogs(String userId, String remark, int responseCode) {
         Log log = new Log();
-        log.setLog_user_id(userId);
+        log.setLogUserId(userId);
         log.setRemark(remark);
-        log.setEvent_id(responseCode);
+        log.setEventId(responseCode);
         long currentTime = System.currentTimeMillis() / 1000L;
-        log.getCreated_date(currentTime);
+        log.setCreated_date(currentTime);
 
         logRepo.save(log);
     }
@@ -27,7 +27,7 @@ public class LogsServiceImpl implements LogService {
     @Override
     public Log retrieveUserLog(String userId) {
 
-        List<Log> retrieveUserListLog = logRepo.retrieveUserLog(userId);
+        List<Log> retrieveUserListLog = logRepo.findByLogUserId(userId);
 
         // Check if the list is not empty
         if (!retrieveUserListLog.isEmpty()) {

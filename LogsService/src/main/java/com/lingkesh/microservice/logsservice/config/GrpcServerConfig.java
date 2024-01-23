@@ -1,6 +1,6 @@
 package com.lingkesh.microservice.logsservice.config;
 
-import com.lingkesh.microservice.logsservice.grpc.LogsService;
+import com.lingkesh.microservice.logsservice.grpc.LogsGrpcConsumer;
 import io.grpc.Server;
 import io.grpc.ServerBuilder;
 import org.springframework.beans.factory.annotation.Value;
@@ -19,7 +19,7 @@ public class GrpcServerConfig {
 
     @Bean
     public Server grpcServer() throws IOException {
-        ServerBuilder<?> serverBuilder = ServerBuilder.forPort(grpcServerPort).addService(new LogsService());;
+        ServerBuilder<?> serverBuilder = ServerBuilder.forPort(grpcServerPort).addService(new LogsGrpcConsumer());;
         Server server = serverBuilder.build();
         server.start();
         return server;

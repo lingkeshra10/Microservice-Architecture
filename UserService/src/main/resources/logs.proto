@@ -5,17 +5,25 @@ option java_package = "com.microservice.proto";
 option java_outer_classname = "LogsProto";
 
 service Logs {
-  rpc logs(addLogs) returns (APIResponse);
+  rpc addLogs(addLogsParams) returns (Empty);
+  rpc retrieveUserLogs(retrieveUserLogsParams) returns (APIResponse);
 }
 
-message addLogs {
+message addLogsParams {
   string userId = 1;
   int32 responseCode = 2;
   string remark = 3;
+}
+
+message retrieveUserLogsParams{
+  string userId = 1;
 }
 
 message APIResponse {
   int32 code = 1;
   string message = 2;
   string object = 3;
+}
+
+message Empty {
 }

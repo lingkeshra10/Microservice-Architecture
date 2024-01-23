@@ -24,16 +24,16 @@ public class LogController {
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(responseModal);
     }
 
-    //add logs
-    @RequestMapping(value = "/addUserLog", produces = "application/json", method = RequestMethod.PUT)
-    public ResponseEntity<ResponseModal> addLogs(@RequestBody AddLogModal addLogModal){
-        return null;
-    }
-
     //list logs
-    @RequestMapping(value = "/retrieveUserLog/{username}", produces = "application/json", method = RequestMethod.GET)
-    public ResponseEntity<ResponseModal> retrieveLogs(@Param("username") String username){
-        return null;
+    @RequestMapping(value = "/retrieveUserLog/{userId}", produces = "application/json", method = RequestMethod.GET)
+    public ResponseEntity<ResponseModal> retrieveLogs(@Param("userId") String userId){
+
+        ResponseModal responseModal = new ResponseModal();
+        responseModal.setCode(1001);
+        responseModal.setMessage("GRPC is working");
+        String object =  "Just testing";
+        responseModal.setObject(object);
+        return ResponseEntity.status(HttpStatus.OK).body(responseModal);
     }
 
 }

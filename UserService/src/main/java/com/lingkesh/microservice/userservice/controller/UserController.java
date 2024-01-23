@@ -74,7 +74,7 @@ public class UserController {
 
         if(user != null){
             String remark = "Add User Successful. The user's username " + addUserModal.getUsername();
-            logsServiceGrpc.addServiceLogs(1, ResponseModal.ADD_USER_SUCCESS, remark, grpcServerHostname, grpcServerPort);
+            logsServiceGrpc.addServiceLogs(user.getId(), ResponseModal.ADD_USER_SUCCESS, remark, grpcServerHostname, grpcServerPort);
 
             //This place that need to send user password details to password table to make sure password records
             RegisterPasswordModal registerPasswordModal = new RegisterPasswordModal();
