@@ -210,6 +210,29 @@ public class UserController {
         return ResponseEntity.status(HttpStatus.OK).body(responseModal);
     }
 
+    @RequestMapping(value = "/retrieveUserLog/{username}", produces = "application/json", method = RequestMethod.GET)
+    public ResponseEntity<ResponseModal> retrieveUserLog(@PathVariable("username") String username){
+
+        ResponseModal responseModal = new ResponseModal();
+        LogsServiceGrpc logsServiceGrpc = new LogsServiceGrpc();
+
+        //Find the username exist or not
+        boolean usernameResult = userService.findExistByUsername(username);
+
+        if(!usernameResult){
+            responseModal.setCode(ResponseModal.USER_NOT_EXIST);
+            responseModal.setMessage(ResponseModal.getResponseMsg(ResponseModal.USER_NOT_EXIST));
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(responseModal);
+        }
+
+        //Extract the user details
+        User user = userService.retrieveUserDetails(username);
+
+        responseModal = logsServiceGrpc.retrieveUserLogs(user.getId(), grpcServerHostname, grpcServerPort);
+
+        return ResponseEntity.status(HttpStatus.OK).body(responseModal);
+    }
+
     private void sendWelcomeUserEmail(User user){
         try {
             //Send Email to the User

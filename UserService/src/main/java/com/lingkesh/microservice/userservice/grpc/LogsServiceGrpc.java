@@ -1,5 +1,6 @@
 package com.lingkesh.microservice.userservice.grpc;
 
+import com.lingkesh.microservice.userservice.modal.ResponseModal;
 import com.microservice.proto.APIResponse;
 import com.microservice.proto.Empty;
 import com.microservice.proto.LogsGrpc;
@@ -28,7 +29,9 @@ public class LogsServiceGrpc {
         channel.shutdown();
     }
 
-    public String retrieveUserLogs(long userId, String grpcServerHostname, int grpcServerPort){
+    public ResponseModal retrieveUserLogs(long userId, String grpcServerHostname, int grpcServerPort){
+
+        ResponseModal responseModal = new ResponseModal();
 
         ManagedChannel channel = ManagedChannelBuilder.forAddress(grpcServerHostname, grpcServerPort).usePlaintext().build();
 
@@ -44,14 +47,14 @@ public class LogsServiceGrpc {
         String message = response.getMessage();
         String object = response.getObject();
 
-        System.out.println("The response code: "  + code);
-        System.out.println("The response message: "  + message);
-        System.out.println("The response object: "  + object);
-
         // Use the response data as needed
         channel.shutdown();
 
-        return object;
+        responseModal.setCode(code);
+        responseModal.setMessage(message);
+        responseModal.setObject(object);
+
+        return responseModal;
     }
 
 
