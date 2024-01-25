@@ -53,4 +53,15 @@ public class Log {
     public void setCreated_date(long created_date) {
         this.created_date = created_date;
     }
+
+    @Override
+    public String toString() {
+        return "Log{" +
+                "id=" + id +
+                ", logUserId='" + logUserId + '\'' +
+                ", eventId=" + eventId +
+                ", remark='" + remark + '\'' +
+                ", created_date=" + created_date +
+                '}';
+    }
 }

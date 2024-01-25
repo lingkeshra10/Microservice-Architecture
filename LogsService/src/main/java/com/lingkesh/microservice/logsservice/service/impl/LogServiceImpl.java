@@ -29,14 +29,14 @@ public class LogServiceImpl implements LogService {
     }
 
     @Override
-    public Log retrieveUserLog(String userId) {
+    public List<Log> retrieveUserLog(String userId) {
 
         List<Log> retrieveUserListLog = logRepo.findByLogUserId(userId);
 
         // Check if the list is not empty
         if (!retrieveUserListLog.isEmpty()) {
             // Get the LogDetails of the first Log in the list
-            return retrieveUserListLog.get(0);
+            return retrieveUserListLog;
         } else {
             // Handle the case when the list is empty (e.g., return null or throw an exception)
             return null;
