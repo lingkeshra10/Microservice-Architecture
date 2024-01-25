@@ -9,8 +9,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 @net.devh.boot.grpc.server.service.GrpcService
 public class LogsGrpcConsumer extends LogsGrpc.LogsImplBase {
 
-    @Autowired
     LogService logService;
+
+    @Autowired
+    public LogsGrpcConsumer(LogService logService) {
+        this.logService = logService;
+    }
 
     @Override
     public void addLogs(addLogsParams request, StreamObserver<Empty> responseObserver) {

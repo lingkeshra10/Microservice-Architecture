@@ -7,10 +7,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
 
-public class LogsServiceImpl implements LogService {
+public class LogServiceImpl implements LogService {
 
     @Autowired
     LogRepo logRepo;
+
+    @Autowired
+    public LogServiceImpl() {
+    }
 
     @Override
     public void addLogs(String userId, String remark, int responseCode) {
