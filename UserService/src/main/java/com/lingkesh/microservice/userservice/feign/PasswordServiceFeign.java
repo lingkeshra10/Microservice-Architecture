@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-@FeignClient(name ="password-service", url="password:8300")
+@FeignClient(name ="password-service", url="${password.service.url}")
 public interface PasswordServiceFeign {
 
     @RequestMapping(value = "/password/registerUsrPwd", produces = "application/json", method = RequestMethod.PUT)

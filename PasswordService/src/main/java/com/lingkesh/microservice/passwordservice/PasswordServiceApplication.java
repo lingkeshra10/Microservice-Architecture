@@ -4,9 +4,9 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class PasswordserviceApplication {
+public class PasswordServiceApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(PasswordserviceApplication.class, args);
+		SpringApplication.run(PasswordServiceApplication.class, args);
 	}
 }
