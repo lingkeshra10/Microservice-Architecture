@@ -1,0 +1,16 @@
+version: '3.9'
+services:
+
+  mysqldb:
+    restart: always
+    ports:
+          - 3306:3306
+    image: mysql:latest
+    environment:
+          MYSQL_ROOT_PASSWORD: foo123
+          MYSQL_USER: admin
+          MYSQL_PASSWORD: br1234App
+          MYSQL_DATABASE: black_rock_db
+    volumes:
+          - ./data/mysql/init-scripts:/docker-entrypoint-initdb.d
+          - ./data/mysql/data:/var/lib/mysql

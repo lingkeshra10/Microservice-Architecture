@@ -1,0 +1,134 @@
+version: '3.9'
+services:
+
+  user:
+      build:
+            context: ./dockerFile/UserService
+      restart: always 
+      ports:
+            - 8200:8200
+      image: 'userimg'
+      volumes:
+            -  /etc/localtime:/etc/localtime
+            - ./otherservice/UserService:/opt/UserService
+      command: /bin/sh -c "chmod 0755 ./startup.sh | ./startup.sh | java -jar /opt/UserService/userservice.jar"
+      deploy:
+            mode: replicated
+  
+  password:
+      build:
+            context: ./dockerFile/PasswordService
+      restart: always 
+      ports:
+            - 8300:8300
+      image: 'passwordimg'
+      volumes:
+            -  /etc/localtime:/etc/localtime
+            - ./otherservice/PasswordService:/opt/PasswordService
+      command: /bin/sh -c "chmod 0755 ./startup.sh | ./startup.sh | java -jar /opt/PasswordService/passwordservice.jar"
+      deploy:
+            mode: replicated
+
+  logs:
+      build:
+            context: ./dockerFile/LogsService
+      restart: always 
+      image: 'logsimg'
+      volumes:
+            -  /etc/localtime:/etc/localtime
+            - ./otherservice/LogsService:/opt/LogsService
+      command: /bin/sh -c "chmod 0755 ./startup.sh | ./startup.sh | java -jar /opt/LogsService/logservice.jar"
+      deploy:
+            mode: replicated
+
+  email:
+      build:
+            context: ./dockerFile/EmailService
+      restart: always 
+      ports:
+            - 8500:8500
+      image: 'emailimg'
+      volumes:
+            -  /etc/localtime:/etc/localtime
+            - ./otherservice/EmailService:/opt/EmailService
+      command: /bin/sh -c "chmod 0755 ./startup.sh | ./startup.sh | java -jar /opt/EmailService/emailservice.jar"
+      deploy:
+            mode: replicated
+
+  kafdrop:
+      restart: always
+      ports:
+            - 9000:9000
+      image: obsidiandynamics/kafdrop
+      environment:
+            KAFKA_BROKERCONNECT: "kafka:19091"
+      depends_on:
+           - kafka
+
+  zookeeper:
+      restart: always
+      ports:
+            - 2181:2181
+      image: zookeeper:3.4.9
+      environment:
+            ZOO_MY_ID: "1"
+            ZOO_PORT: "2181"
+            ZOO_SERVERS: "server.1=zookeeper:2888:3888"
+      volumes:
+            - ./data/zookeeper/data:/data
+            - ./data/zookeeper/datalog:/datalog
+
+  kafka:
+      restart: always
+      ports:
+            - 9091:9091
+      image: confluentinc/cp-kafka:5.3.0
+      environment:
+            # The KAFKA_ADVERTISED_LISTENERS is for the KAFKA connection for internal and external. Internal will use 19091 port and External will use 9091 
+            KAFKA_ADVERTISED_LISTENERS: "LISTENER_DOCKER_INTERNAL://kafka:19091,LISTENER_DOCKER_EXTERNAL://${DOCKER_HOST_IP:-127.0.0.1}:9091"
+            KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: "LISTENER_DOCKER_INTERNAL:PLAINTEXT,LISTENER_DOCKER_EXTERNAL:PLAINTEXT"
+            KAFKA_INTER_BROKER_LISTENER_NAME: "LISTENER_DOCKER_INTERNAL"
+            KAFKA_ZOOKEEPER_CONNECT: "zookeeper:2181"
+            KAFKA_BROKER_ID: "1"
+            KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: "1"
+      volumes:
+            - ./data/kafka/data:/var/lib/kafka/data
+      depends_on:
+           - zookeeper
+
+  mysqldb:
+      restart: always
+      ports:
+            - 3306:3306
+      image: mysql:latest
+      environment:
+            MYSQL_ROOT_PASSWORD: foo123
+            MYSQL_USER: admin
+            MYSQL_PASSWORD: br1234App
+            MYSQL_DATABASE: black_rock_db
+      volumes:
+            - ./data/mysql/init-scripts:/docker-entrypoint-initdb.d
+            - ./data/mysql/data:/var/lib/mysql
+
+  mongo:
+      image: mongo:latest
+      ports:
+            - "27017:27017"
+      environment:
+            - MONGO_INITDB_ROOT_USERNAME=admin
+            - MONGO_INITDB_ROOT_PASSWORD=password
+            - MONGO_INITDB_DATABASE=blackRockLogs
+      volumes:
+            - ./data/mongo/mongodbData:/data/db
+
+  mongo-express:
+      image: mongo-express:latest
+      restart: always
+      ports:
+            - "8081:8081"
+      environment:
+            - ME_CONFIG_MONGODB_ADMINUSERNAME=admin
+            - ME_CONFIG_MONGODB_ADMINPASSWORD=password
+            - ME_CONFIG_MONGODB_SERVER=mongo
+      depends_on:
+            - mongo
