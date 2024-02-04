@@ -61,8 +61,3 @@ Here are some key functions and features of an API Gateway:
 10. **Error Handling:** They can handle errors and provide meaningful error messages to clients, improving the developer experience.
 
 API gateways are essential components for managing the complexity and security of modern, distributed systems. They simplify the process of exposing and managing APIs, making it easier to develop, deploy, and maintain large-scale applications. Popular API gateway solutions include Amazon API Gateway, Apigee, Kong, and Nginx, among others.
-
-Note to anyone who trying to find the source code of this sample docker you may get it by accessing the link below:
-```
-https://github.com/lingkeshra10/Microservice-Architecture
-```

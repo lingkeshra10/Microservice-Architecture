@@ -94,8 +94,3 @@ When choosing between PostgreSQL and MySQL, it's essential to consider factors s
 Below is the sample architecture of Microservice that I'm going to build and run it:
 
 ![This is an image](https://github.com/lingkeshra10/Microservice-Architecture/blob/main/Microservice%20Architecture.png)
-
-Note to anyone whoever reading this, I have created this Sample Microservice Architecture in Docker. Below is the link to access the Sample Microservice Docker Architecture
-```
-https://github.com/lingkeshra10/Microservice-Docker
-```
