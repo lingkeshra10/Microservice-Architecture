@@ -4,7 +4,7 @@
 
 1. Login to the Mongo DB 
 ```
-mongosh -u **<username>** -p **<password>**
+mongosh -u <username> -p <password>
 ```
 
 2. **To show the DBs**
