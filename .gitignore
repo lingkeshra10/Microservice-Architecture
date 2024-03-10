@@ -23,7 +23,6 @@ target/
 .mtj.tmp/
 
 # Package Files #
-*.jar
 *.jar.original
 *.war
 *.nar
