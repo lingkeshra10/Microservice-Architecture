@@ -61,6 +61,22 @@
 			<version>1.61.1</version>
 		</dependency>
 		<dependency>
+			<groupId>io.grpc</groupId>
+			<artifactId>grpc-context</artifactId>
+			<version>1.61.1</version>
+		</dependency>
+		<dependency>
+			<groupId>io.grpc</groupId>
+			<artifactId>grpc-api</artifactId>
+			<version>1.61.1</version>
+		</dependency>
+		<dependency>
+			<groupId>io.grpc</groupId>
+			<artifactId>grpc-services</artifactId>
+			<version>1.61.1</version>
+			<scope>runtime</scope>
+		</dependency>
+		<dependency>
 			<groupId>net.devh</groupId>
 			<artifactId>grpc-server-spring-boot-starter</artifactId>
 			<version>2.14.0.RELEASE</version>
