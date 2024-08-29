@@ -8,10 +8,19 @@ import com.microservice.proto.addLogsParams;
 import com.microservice.proto.retrieveUserLogsParams;
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Service;
 
+@Service
 public class LogsServiceGrpc {
 
-    public void addServiceLogs(long userId, int responseCode, String remark, String grpcServerHostname, int grpcServerPort){
+    @Value("${grpc.server.hostname}")
+    private String grpcServerHostname;
+
+    @Value("${grpc.server.port}")
+    private int grpcServerPort;
+
+    public void addServiceLogs(long userId, int responseCode, String remark){
 
         ManagedChannel channel = ManagedChannelBuilder.forAddress(grpcServerHostname, grpcServerPort).usePlaintext().build();
 

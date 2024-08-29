@@ -22,21 +22,18 @@ import java.util.List;
 @RequestMapping("/user")
 public class UserController {
 
-    @Value("${grpc.server.hostname}")
-    private String grpcServerHostname;
-
-    @Value("${grpc.server.port}")
-    private int grpcServerPort;
-
-    @Autowired
-    private PasswordServiceFeign passwdFeignService;
-
     @Autowired
     UserService userService;
-
     @Autowired
     EmailServiceProducer producer;
-
+    @Value("${grpc.server.hostname}")
+    private String grpcServerHostname;
+    @Value("${grpc.server.port}")
+    private int grpcServerPort;
+    @Autowired
+    private LogsServiceGrpc logsServiceGrpc;
+    @Autowired
+    private PasswordServiceFeign passwdFeignService;
     @GetMapping("/status/check")
     public String status() {
         return "Its working";
@@ -45,14 +42,13 @@ public class UserController {
     @RequestMapping(value = "/add", produces = "application/json", method = RequestMethod.PUT)
     public ResponseEntity<ResponseModal> addUser(@RequestBody AddUserModal addUserModal){
 
-        LogsServiceGrpc logsServiceGrpc = new LogsServiceGrpc();
         ResponseModal responseModal = new ResponseModal();
 
         //find the username exist or not
         boolean usernameResult = userService.findExistByUsername(addUserModal.getUsername());
         if(usernameResult){
             String remark = "Add User Failed. This username already exist: " + addUserModal.getUsername();
-            logsServiceGrpc.addServiceLogs(1, ResponseModal.USERNAME_ALREADY_EXIST, remark, grpcServerHostname, grpcServerPort);
+            logsServiceGrpc.addServiceLogs(1, ResponseModal.USERNAME_ALREADY_EXIST, remark);
 
             responseModal.setCode(ResponseModal.USERNAME_ALREADY_EXIST);
             responseModal.setMessage(ResponseModal.getResponseMsg(ResponseModal.USERNAME_ALREADY_EXIST));
@@ -63,7 +59,7 @@ public class UserController {
         boolean emailResult = userService.findExistByEmail(addUserModal.getEmail());
         if(emailResult){
             String remark = "Add User Failed. This email already exist: " + addUserModal.getEmail();
-            logsServiceGrpc.addServiceLogs(1, ResponseModal.USERNAME_ALREADY_EXIST, remark, grpcServerHostname, grpcServerPort);
+            logsServiceGrpc.addServiceLogs(1, ResponseModal.USERNAME_ALREADY_EXIST, remark);
 
             responseModal.setCode(ResponseModal.EMAIL_ALREADY_EXIST);
             responseModal.setMessage(ResponseModal.getResponseMsg(ResponseModal.EMAIL_ALREADY_EXIST));
@@ -74,7 +70,7 @@ public class UserController {
 
         if(user != null){
             String remark = "Add User Successful. The user's username " + addUserModal.getUsername();
-            logsServiceGrpc.addServiceLogs(user.getId(), ResponseModal.ADD_USER_SUCCESS, remark, grpcServerHostname, grpcServerPort);
+            logsServiceGrpc.addServiceLogs(user.getId(), ResponseModal.ADD_USER_SUCCESS, remark);
 
             //This place that need to send user password details to password table to make sure password records
             RegisterPasswordModal registerPasswordModal = new RegisterPasswordModal();
@@ -92,7 +88,7 @@ public class UserController {
             return ResponseEntity.status(HttpStatus.CREATED).body(responseModal);
         }else{
             String remark = "Add User Failed. The user's username " + addUserModal.getUsername();
-            logsServiceGrpc.addServiceLogs(1, ResponseModal.ADD_USER_FAIL, remark, grpcServerHostname, grpcServerPort);
+            logsServiceGrpc.addServiceLogs(1, ResponseModal.ADD_USER_FAIL, remark);
 
             responseModal.setCode(ResponseModal.ADD_USER_FAIL);
             responseModal.setMessage(ResponseModal.getResponseMsg(ResponseModal.ADD_USER_FAIL));
@@ -248,5 +244,8 @@ public class UserController {
         }
     }
 
+    public int add(int numberA, int numberB){
+        return numberA + numberB;
+    }
 
 }
