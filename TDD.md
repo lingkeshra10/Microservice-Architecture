@@ -5,10 +5,10 @@ JUnit is a popular testing framework for Java that allows developers to write an
 Here are some key features and concepts of JUnit:
 
 1. Annotations: JUnit uses annotations to define test methods and various testing behaviors. Common annotations include:
-- @Test: Marks a method as a test case.
-- @BeforeEach and @AfterEach: Run before and after each test method, respectively, to set up and clean up test conditions.
-- @BeforeAll and @AfterAll: Run once before and after all test methods in a class, typically used for initializing resources shared among tests.
-- @Disabled: Temporarily disables a test method.
+- **@Test:** Marks a method as a test case.
+- **@BeforeEach and @AfterEach:** Run before and after each test method, respectively, to set up and clean up test conditions.
+- **@BeforeAll and @AfterAll:** Run once before and after all test methods in a class, typically used for initializing resources shared among tests.
+- **@Disabled:** Temporarily disables a test method.
 
 2. Assertions: JUnit provides assertion methods, like assertEquals, assertTrue, assertNotNull, etc., to compare the expected results with the actual results produced by the code being tested.
 
@@ -26,17 +26,17 @@ JUnit plays a crucial role in Test-Driven Development (TDD), where developers wr
 Unit and Mockito are not the same thing, but they are often used together in Java testing.
 
 ### JUnit
-- Purpose: JUnit is a testing framework for writing and running tests in Java. It is primarily used for unit testing, where individual pieces of code (like methods) are tested to ensure they function as expected.
-- Functionality: JUnit provides annotations (e.g., @Test, @BeforeEach, @AfterEach), assertion methods (e.g., assertEquals, assertTrue), and test runners to automate the execution of test cases.
-- Scope: JUnit is focused on testing whether your code produces the correct output given specific inputs.
+- **Purpose:** JUnit is a testing framework for writing and running tests in Java. It is primarily used for unit testing, where individual pieces of code (like methods) are tested to ensure they function as expected.
+- **Functionality:** JUnit provides annotations (e.g., @Test, @BeforeEach, @AfterEach), assertion methods (e.g., assertEquals, assertTrue), and test runners to automate the execution of test cases.
+- **Scope:** JUnit is focused on testing whether your code produces the correct output given specific inputs.
 
 ### Mockito
-- Purpose: Mockito is a mocking framework used in conjunction with testing frameworks like JUnit. Its main purpose is to create mock objects, which simulate the behavior of real objects in controlled ways.
-- Functionality: Mockito allows you to:
-- Mock Dependencies: Replace real objects with mock objects in your tests, so you can isolate the unit of code you're testing. This is particularly useful when the real objects are complex, slow, or have side effects (like database access).
-- Stub Methods: Specify what a mock object's methods should return when called (e.g., when(mockObject.someMethod()).thenReturn(someValue)).
-- Verify Interactions: Check that certain methods were called on the mock objects with specific arguments (e.g., verify(mockObject).someMethod(someArgument)).
-- Scope: Mockito is focused on creating and managing mock objects, making it easier to write unit tests that are isolated from the rest of your codebase.
+- **Purpose:** Mockito is a mocking framework used in conjunction with testing frameworks like JUnit. Its main purpose is to create mock objects, which simulate the behavior of real objects in controlled ways.
+- **Functionality:** Mockito allows you to:
+- **Mock Dependencies:** Replace real objects with mock objects in your tests, so you can isolate the unit of code you're testing. This is particularly useful when the real objects are complex, slow, or have side effects (like database access).
+- **Stub Methods:** Specify what a mock object's methods should return when called (e.g., when(mockObject.someMethod()).thenReturn(someValue)).
+- **Verify Interactions:** Check that certain methods were called on the mock objects with specific arguments (e.g., verify(mockObject).someMethod(someArgument)).
+- **Scope:** Mockito is focused on creating and managing mock objects, making it easier to write unit tests that are isolated from the rest of your codebase.
 
 Using Them Together
 JUnit is used to write and run test cases, while Mockito is used within those test cases to mock dependencies.
