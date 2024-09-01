@@ -33,9 +33,11 @@ Unit and Mockito are not the same thing, but they are often used together in Jav
 ### Mockito
 - **Purpose:** Mockito is a mocking framework used in conjunction with testing frameworks like JUnit. Its main purpose is to create mock objects, which simulate the behavior of real objects in controlled ways.
 - **Functionality:** Mockito allows you to:
-    a. **Mock Dependencies:** Replace real objects with mock objects in your tests, so you can isolate the unit of code you're testing. This is particularly useful when the real objects are complex, slow, or have side effects (like database access).
-    b. **Stub Methods:** Specify what a mock object's methods should return when called (e.g., when(mockObject.someMethod()).thenReturn(someValue)).
-    c. **Verify Interactions:** Check that certain methods were called on the mock objects with specific arguments (e.g., verify(mockObject).someMethod(someArgument)).
+
+a. **Mock Dependencies:** Replace real objects with mock objects in your tests, so you can isolate the unit of code you're testing. This is particularly useful when the real objects are complex, slow, or have side effects (like database access).
+b. **Stub Methods:** Specify what a mock object's methods should return when called (e.g., when(mockObject.someMethod()).thenReturn(someValue)).
+c. **Verify Interactions:** Check that certain methods were called on the mock objects with specific arguments (e.g., verify(mockObject).someMethod(someArgument)).
+
 - **Scope:** Mockito is focused on creating and managing mock objects, making it easier to write unit tests that are isolated from the rest of your codebase.
 
 Using Them Together
