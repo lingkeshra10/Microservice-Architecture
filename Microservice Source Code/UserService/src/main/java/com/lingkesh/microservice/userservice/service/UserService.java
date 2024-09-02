@@ -15,6 +15,9 @@ public interface UserService {
 
     List<User> retrieveUserList();
 
+    List<User> searchListOfUser(String username, String email, int status, String uniqueId, String applicationId,
+                                String phoneNumber, String startDate, String endDate, String start, String limit);
+
     boolean findExistByUsername(String username);
 
     boolean findExistByEmail(String email);

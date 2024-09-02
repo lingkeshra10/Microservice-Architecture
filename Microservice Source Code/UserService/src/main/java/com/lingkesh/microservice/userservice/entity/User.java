@@ -14,7 +14,18 @@ public class User {
     @Column(nullable = false)
     private String username;
     @Column(nullable = false)
+    private String user_phone_number;
+    private Integer status;
+    @Column(nullable = false)
+    private String unique_id;
+    @Column(nullable = false)
+    private String application_id;
+    @Column(nullable = false)
     private int encryptPassword;
+    @Column(nullable = false)
+    private long created_date;
+    private long updated_date;
+    private long deleted_date;
 
     public Long getId() {
         return id;
@@ -48,12 +59,68 @@ public class User {
         this.username = username;
     }
 
+    public String getUser_phone_number() {
+        return user_phone_number;
+    }
+
+    public void setUser_phone_number(String user_phone_number) {
+        this.user_phone_number = user_phone_number;
+    }
+
+    public Integer getStatus() {
+        return status;
+    }
+
+    public void setStatus(Integer status) {
+        this.status = status;
+    }
+
+    public String getUnique_id() {
+        return unique_id;
+    }
+
+    public void setUnique_id(String unique_id) {
+        this.unique_id = unique_id;
+    }
+
+    public String getApplication_id() {
+        return application_id;
+    }
+
+    public void setApplication_id(String application_id) {
+        this.application_id = application_id;
+    }
+
     public int getEncryptPassword() {
         return encryptPassword;
     }
 
     public void setEncryptPassword(int encryptPassword) {
         this.encryptPassword = encryptPassword;
+    }
+
+    public long getCreated_date() {
+        return created_date;
+    }
+
+    public void setCreated_date(long created_date) {
+        this.created_date = created_date;
+    }
+
+    public long getUpdated_date() {
+        return updated_date;
+    }
+
+    public void setUpdated_date(long updated_date) {
+        this.updated_date = updated_date;
+    }
+
+    public long getDeleted_date() {
+        return deleted_date;
+    }
+
+    public void setDeleted_date(long deleted_date) {
+        this.deleted_date = deleted_date;
     }
 
     @Override
@@ -63,6 +130,14 @@ public class User {
                 ", name='" + name + '\'' +
                 ", email='" + email + '\'' +
                 ", username='" + username + '\'' +
+                ", user_phone_number='" + user_phone_number + '\'' +
+                ", status=" + status +
+                ", unique_id='" + unique_id + '\'' +
+                ", application_id='" + application_id + '\'' +
+                ", encryptPassword=" + encryptPassword +
+                ", created_date=" + created_date +
+                ", updated_date=" + updated_date +
+                ", deleted_date=" + deleted_date +
                 '}';
     }
 }
