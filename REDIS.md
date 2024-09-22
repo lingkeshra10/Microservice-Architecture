@@ -1,4 +1,6 @@
-# Redis
+# Caching Memory
+
+# 1. Redis
 
 Redis is a high-performance, in-memory data store that serves as a caching mechanism among many other uses. It acts as the underlying storage mechanism where cached data is stored, retrieved, and managed. Redis can store various data types (strings, lists, sets, etc.) and is used for manually managing cached data in a distributed system.
 
@@ -44,7 +46,7 @@ public class RedisConfig {
 
 Jedis and Lettuce are two popular Java clients used to interact with Redis, a fast, in-memory data store. Both libraries are used to send commands and receive responses from Redis, but they differ in terms of features, architecture, and use cases.
 
-## 1. Jedis
+1. Jedis
 
 Jedis is one of the oldest and most popular Redis clients for Java. It is a synchronous and thread-safe Redis client, which means that each Redis command blocks the calling thread until it gets a response from the server.
 
@@ -83,7 +85,7 @@ public class JedisExample {
 }
 ```
 
-## 2. Lettuce
+2. Lettuce
 
 Lettuce is a newer Redis client for Java, which is designed with scalability and performance in mind. It uses a non-blocking, asynchronous API with support for reactive programming and synchronous/blocking access. Lettuce is the default Redis client used by Spring Data Redis.
 
@@ -133,3 +135,33 @@ public class LettuceExample {
 }
 ```
 
+## Which One to Choose?
+## Use Jedis if:
+- You have a simple or small-scale application that doesn't need high concurrency.
+- You want a blocking, synchronous API and don't need advanced features like reactive streams or non-blocking I/O.
+
+## Use Lettuce if:
+- You have a highly concurrent, distributed, or reactive application.
+- You want to leverage asynchronous programming or use Reactive Streams (e.g., with Spring WebFlux or RxJava).
+- You need better Redis Cluster support or are working in a microservice architecture.
+
+## In summary:
+
+Jedis is simpler and suited for blocking, smaller-scale apps.
+Lettuce is more powerful, asynchronous, and scalable, better for larger, high-concurrency, and non-blocking use cases.
+
+
+# 2. Cache Evict
+
+@CacheEvict is a Spring Cache annotation used to invalidate (remove) cached data from the caching layer when certain conditions are met, such as after an update operation. It’s part of Spring’s Cache Abstraction, which abstracts away the specific caching mechanism (like Redis, EhCache, etc.) and allows you to work with caches declaratively using annotations.
+
+- Role: @CacheEvict is a cache management tool provided by Spring to automatically remove cached data when you need to update the cache.
+- Type: @CacheEvict is a part of Spring’s caching abstraction. It doesn't store data but provides a mechanism to tell the caching layer (like Redis) when to evict data.
+- Functionality: It automatically interacts with the underlying caching system (Redis, EhCache, etc.) to remove specific cache entries based on configuration.
+
+
+How They Work Together:
+- Redis is the actual caching mechanism that stores the data in memory.
+- @CacheEvict is a declarative way to tell Redis (or any other caching provider) to remove (evict) specific cache entries when needed.
+
+For example, if you store SMTP details in Redis and later update them, you can use @CacheEvict to remove those details from the cache so that the next time they are requested, they will be fetched from the database and cached again.
