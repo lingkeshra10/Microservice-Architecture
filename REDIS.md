@@ -159,6 +159,13 @@ Lettuce is more powerful, asynchronous, and scalable, better for larger, high-co
 - Type: @CacheEvict is a part of Spring’s caching abstraction. It doesn't store data but provides a mechanism to tell the caching layer (like Redis) when to evict data.
 - Functionality: It automatically interacts with the underlying caching system (Redis, EhCache, etc.) to remove specific cache entries based on configuration.
 
+```
+@CacheEvict(value = "smtpCache", key = "'smtpDetails'")
+public void updateSmtpDetails(EmailServer newSmtpDetails) {
+    emailServerRepo.save(newSmtpDetails);  // Evicts cache after updating DB
+}
+```
+
 
 How They Work Together:
 - Redis is the actual caching mechanism that stores the data in memory.
