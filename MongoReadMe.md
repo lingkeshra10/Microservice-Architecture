@@ -46,27 +46,27 @@ db.createCollection("brLogs");
 
 7. **Drop a collection in the BlackRockLogs Database**
 ```
-db.brLogs.drop()
+db.brLogs.drop();
 ```
 
 8. **Find all logs specific data query**
 ```
-db.brLogs.find({age: 30})
+db.brLogs.find({age: 30});
 ```
 
 9. **Find one specific logs query**
 ```
-db.brLogs.findOne({name: "John"})
+db.brLogs.findOne({name: "John"});
 ```
 
 10. **Update the Logs Details**
 ```
-db.brLogs.update({name: "John"}, {$set: {age: 31}})
+db.brLogs.update({name: "John"}, {$set: {age: 31}});
 ```
 
 11. **Remove the logs using specific logs**
 ```
-db.brLogs.remove({name: "John"})
+db.brLogs.remove({name: "John"});
 ```
 
 ## MongoDB FAQ
