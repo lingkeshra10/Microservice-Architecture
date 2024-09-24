@@ -20,6 +20,9 @@ public class UserServiceImpl implements UserService {
 
     UserRepo userRepo;
 
+    private static int userActiveStatus = 1;
+    private static int userPendingActiveStatus = 2;
+
     @Autowired
     public UserServiceImpl(UserRepo userRepo) {
         this.userRepo = userRepo;
@@ -33,6 +36,11 @@ public class UserServiceImpl implements UserService {
             user.setEmail(addUserModal.getEmail());
             user.setUsername(addUserModal.getUsername());
             user.setEncryptPassword(addUserModal.getPassword().hashCode());
+            user.setApplication_id(addUserModal.getUsername());
+            user.setUnique_id(addUserModal.getUsername());
+            user.setStatus(userPendingActiveStatus);
+            user.setUser_phone_number("01126141077");
+            user.setCreated_date(System.currentTimeMillis());
 
             userRepo.save(user);
             return user;

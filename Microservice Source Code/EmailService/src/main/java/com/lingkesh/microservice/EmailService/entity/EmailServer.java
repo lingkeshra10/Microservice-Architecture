@@ -5,9 +5,14 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
+import java.io.Serializable;
+
 @Entity
 @Table(name="br_email")
-public class EmailServer {
+public class EmailServer implements Serializable {
+
+    private static final long serialVersionUID = 1L;
+
     @Id
     @Column(nullable = false)
     private String id;
