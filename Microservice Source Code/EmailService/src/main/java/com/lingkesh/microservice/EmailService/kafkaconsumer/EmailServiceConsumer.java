@@ -18,19 +18,15 @@ public class EmailServiceConsumer {
     @Value("${grpc.server.port}")
     private int grpcServerPort;
     private final ObjectMapper objectMapper;
+    private final EmailServiceManagement emailServiceManagement;
+
     private static final String consumeSimpleEmail = "${topic.simple.email}";
     private static final String consumeEmailWithAttachment = "${topic.attachment.email}";
-    EmailServiceManagement emailServiceManagement;
 
-    @Autowired
+    @Autowired(required = false)
     public EmailServiceConsumer(ObjectMapper objectMapper, EmailServiceManagement emailServiceManagement) {
         this.objectMapper = objectMapper;
         this.emailServiceManagement = emailServiceManagement;
-    }
-
-    @Autowired
-    public EmailServiceConsumer(ObjectMapper objectMapper) {
-        this.objectMapper = objectMapper;
     }
 
     @KafkaListener(topics = consumeSimpleEmail)
