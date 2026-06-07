@@ -1,7 +1,13 @@
 package com.lingkesh.microservice.EmailService.modal;
 
-public class ResponseModal {
+import lombok.*;
 
+@Getter
+@Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
+public class ResponseModal {
     int code;
     String message;
     String object;
@@ -21,29 +27,5 @@ public class ResponseModal {
             case 500 -> "Exception Error";
             default -> "";
         };
-    }
-
-    public int getCode() {
-        return code;
-    }
-
-    public void setCode(int code) {
-        this.code = code;
-    }
-
-    public String getMessage() {
-        return message;
-    }
-
-    public void setMessage(String message) {
-        this.message = message;
-    }
-
-    public String getObject() {
-        return object;
-    }
-
-    public void setObject(String object) {
-        this.object = object;
     }
 }

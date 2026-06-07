@@ -1,32 +1,16 @@
 package com.lingkesh.microservice.userservice.modal;
 
-public class RegisterPasswordModal {
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
+@Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
+public class RegisterPasswordModal {
     private long userId;
     private String username;
     private int newPassword;
-
-    public long getUserId() {
-        return userId;
-    }
-
-    public void setUserId(long userId) {
-        this.userId = userId;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public int getNewPassword() {
-        return newPassword;
-    }
-
-    public void setNewPassword(int newPassword) {
-        this.newPassword = newPassword;
-    }
 }

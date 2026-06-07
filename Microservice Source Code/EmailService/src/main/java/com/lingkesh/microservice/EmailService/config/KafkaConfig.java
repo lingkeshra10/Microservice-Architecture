@@ -8,7 +8,6 @@ import org.springframework.kafka.annotation.EnableKafka;
 @EnableKafka
 @Configuration
 public class KafkaConfig {
-
     @Bean
     public ModelMapper modelMapper() {
         return new ModelMapper();

@@ -1,3 +1,4 @@
+-- Create table br_email
 CREATE TABLE br_password (
     id BIGINT AUTO_INCREMENT PRIMARY KEY,
     password_user_id BIGINT,

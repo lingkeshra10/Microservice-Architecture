@@ -22,7 +22,6 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class EmailServiceManagement {
-
     EmailServerService emailServerService;
     private static final int DEFAULT_TIMEOUT = 15000;
     private static final Logger logger = LogManager.getLogger(EmailServiceManagement.class);

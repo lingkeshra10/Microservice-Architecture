@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: blue-rock-mysql
+  namespace: email-system
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: blue-rock-mysql
+  template:
+    metadata:
+      labels:
+        app: blue-rock-mysql
+    spec:
+      containers:
+        - name: mysql
+          image: mysql:8.0
+          ports:
+            - containerPort: 3306
+          env:
+            - name: MYSQL_ROOT_PASSWORD
+              value: rootpassword
+            - name: MYSQL_DATABASE
+              value: blue_rock_db
+            - name: MYSQL_USER
+              value: admin
+            - name: MYSQL_PASSWORD
+              value: foo123
+          volumeMounts:
+            - name: mysql-storage
+              mountPath: /var/lib/mysql
+      volumes:
+        - name: mysql-storage
+          emptyDir: {}

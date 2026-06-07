@@ -1,7 +1,15 @@
 package com.lingkesh.microservice.logsservice.modal;
 
-public class ResponseModal {
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
+@Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
+public class ResponseModal {
     int code;
     String message;
     String object;
@@ -13,42 +21,12 @@ public class ResponseModal {
     public static int EXCEPTION_ERROR = 500;
 
     public static String getResponseMsg(int code){
-        switch (code) {
-            case SUCCESS:
-                return "Success";
-            case ADD_LOG_FAIL:
-                return "Add User Log failed";
-            case RETRIEVE_LOG_FAIL:
-                return "Retrieve User Log failed";
-
-            case 500:
-                return "Exception Error";
-            default:
-                return "";
-        }
-    }
-
-    public int getCode() {
-        return code;
-    }
-
-    public void setCode(int code) {
-        this.code = code;
-    }
-
-    public String getMessage() {
-        return message;
-    }
-
-    public void setMessage(String message) {
-        this.message = message;
-    }
-
-    public String getObject() {
-        return object;
-    }
-
-    public void setObject(String object) {
-        this.object = object;
+        return switch (code) {
+            case SUCCESS -> "Success";
+            case ADD_LOG_FAIL -> "Add User Log failed";
+            case RETRIEVE_LOG_FAIL -> "Retrieve User Log failed";
+            case 500 -> "Exception Error";
+            default -> "";
+        };
     }
 }
